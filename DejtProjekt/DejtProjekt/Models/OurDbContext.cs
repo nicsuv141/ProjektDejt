@@ -8,6 +8,6 @@ namespace DejtProjekt.Models
 {
     public class OurDbContext : DbContext
     {
-        public DbSet<UserModel UserModel> {get; set; }
+        public DbSet<UserModel> userModel {get; set; }
     }
 }
