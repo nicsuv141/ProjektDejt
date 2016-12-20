@@ -37,7 +37,7 @@ namespace DejtProjekt.Controllers
                     db.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.Message = account.FirstName + " " + account.LastName;  
+                ViewBag.Message = account.FirstName + " " + account.LastName + "Succsess";  
 
             }
             return View();
@@ -57,7 +57,7 @@ namespace DejtProjekt.Controllers
                 var usr = db.userModel.Where(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
                 if (usr != null)
                 {
-                    Session["UserId"] = usr.UserId.ToString();
+                    Session["UserID"] = usr.UserID.ToString();
                     Session["Username"] = usr.Username.ToString();
                     return RedirectToAction("LoggedIn");
                 }
@@ -70,7 +70,7 @@ namespace DejtProjekt.Controllers
         }
         public ActionResult LoggedIn()
         {
-            if (Session["UserId"] != null)
+            if (Session["UserID"] != null)
             {
                 return View();
             }

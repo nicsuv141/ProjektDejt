@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace DejtProjekt.Models
 {
-    //[Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor")]
+   
 
     [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor")]
     public class UserModel
     {
         [Key]
-        public int UserId { get; set; }  // Primary key
+        public int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
         public string Username { get; set; }
         [Required(ErrorMessage = "Skriv in ett lösenord.")]
