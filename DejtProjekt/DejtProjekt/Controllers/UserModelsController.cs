@@ -17,6 +17,7 @@ namespace DejtProjekt.Controllers
         // GET: UserModels
         public ActionResult Index()
         {
+
             return View(db.userModel.ToList());
         }
 
