@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DejtProjekt.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace DejtProjekt.Controllers
 {
@@ -65,7 +66,8 @@ namespace DejtProjekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserModel userModel = db.userModel.Find(id);
+            UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
+           
             if (userModel == null)
             {
                 return HttpNotFound();
@@ -74,17 +76,49 @@ namespace DejtProjekt.Controllers
         }
 
         // POST: UserModels/Edit/5
-        [HttpPost]
+        [HttpPost,ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(UserModel userModel)
+        public ActionResult EditPost(int? id, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(userModel).State = EntityState.Modified;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var userToUpdate = db.userModel.Find(id);
+            if (TryUpdateModel(userToUpdate, "",
+                new string[] { "Username, Password,FirstName,LastName,Email, Gender,Phone,Country" }))
+            {
+                try
+                {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        if (userToUpdate.Files.Any(f => f.FileType == FileType.Avatar))
+                        {
+                            db.Files.Remove(userToUpdate.Files.First(f => f.FileType == FileType.Avatar));
+                        }
+                        var avatar = new File
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        userToUpdate.Files = new List<File> { avatar };
+                    }
+                    db.Entry(userToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(userModel);
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Kan inte uppdatera just nu, kontakta admin om problemet kvarstår");
+                }
+            }
+            return View(userToUpdate);
         }
 
         // GET: UserModels/Delete/5
