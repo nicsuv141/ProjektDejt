@@ -34,6 +34,6 @@ namespace DejtProjekt.Models
         //public int? PostId { get; set; }  // Foreign key 
         //public int? FriendId { get; set; } // Foreign entity
 
-        public virtual ICollection<FileType> files { get; set; }
+        public virtual ICollection<File> Files { get; set; }
     }
 }
