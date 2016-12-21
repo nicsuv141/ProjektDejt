@@ -27,11 +27,25 @@ namespace DejtProjekt.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserModel account)
+        public ActionResult Register(UserModel account,, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                using(OurDbContext db = new OurDbContext())
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var avatar = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    UserModel.Files = new List<File> { avatar };
+                }
+                using (OurDbContext db = new OurDbContext())
                 {
                     db.userModel.Add(account);
                     db.SaveChanges();
