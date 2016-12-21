@@ -9,5 +9,6 @@ namespace DejtProjekt.Models
     public class OurDbContext : DbContext
     {
         public DbSet<UserModel> userModel {get; set; }
+        public DbSet<File> Files { get; set; }
     }
 }
