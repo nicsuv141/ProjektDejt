@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DejtProjekt.Models
 {
-    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor,FileType,files")]
+    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, FileType, Files")]
     public class UserModel
     {
         [Key]

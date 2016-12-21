@@ -28,14 +28,13 @@ namespace DejtProjekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserModel userModel1 = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
-
-            UserModel userModel2 = db.userModel.Find(id);
-            if (userModel2 == null)
+            UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
+           
+            if (userModel == null)
             {
                 return HttpNotFound();
             }
-            return View(userModel2);
+            return View(userModel);
         }
 
         // GET: UserModels/Create
