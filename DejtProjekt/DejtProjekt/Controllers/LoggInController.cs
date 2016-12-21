@@ -27,8 +27,9 @@ namespace DejtProjekt.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserModel account,, HttpPostedFileBase upload)
+        public ActionResult Register(UserModel account, HttpPostedFileBase upload)
         {
+            UserModel userModel = new UserModel();
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
@@ -43,7 +44,7 @@ namespace DejtProjekt.Controllers
                     {
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
-                    UserModel.Files = new List<File> { avatar };
+                    userModel.Files = new List<File> { avatar };
                 }
                 using (OurDbContext db = new OurDbContext())
                 {
