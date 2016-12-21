@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DejtProjekt.Models
 {
-    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor,FileType,files")]
+    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor,FileType,Files")]
     public class UserModel
     {
         [Key]
@@ -25,7 +25,6 @@ namespace DejtProjekt.Models
         //public string UserName { get; set; }
         public char? Hidden { get; set; }
         public byte?[] Image { get; set; }
-        public FileType FileType { get; set; }
         public bool? Gender { get; set; }
         public string Phone { get; set; }
         public string Country { get; set; }
