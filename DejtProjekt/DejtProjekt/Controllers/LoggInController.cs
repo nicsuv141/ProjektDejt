@@ -14,6 +14,7 @@ namespace DejtProjekt.Controllers
         {
             using (OurDbContext db = new OurDbContext())
             {
+
                 return View(db.userModel.ToList());
 
             }
