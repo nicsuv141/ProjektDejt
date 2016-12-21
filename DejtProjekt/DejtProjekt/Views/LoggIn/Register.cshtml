@@ -66,6 +66,13 @@
                         </div>
                     </div>
 
+                   <div class="form-group">
+                       @Html.Label("Avatar", new { @class = "control-label col-md-2" })
+                       <div class="col-md-10">
+                       <input type="file" id="Avatar" name="upload" />
+                       </div>
+                  </div>
+
                     <div class="form-group">
                         @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
