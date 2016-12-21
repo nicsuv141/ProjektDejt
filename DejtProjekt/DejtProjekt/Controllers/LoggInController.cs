@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 using DejtProjekt.Models;
 
 namespace DejtProjekt.Controllers
@@ -31,7 +30,7 @@ namespace DejtProjekt.Controllers
         {
             if (ModelState.IsValid)
             {
-                using(OurDbContext db = new OurDbContext() )
+                using(OurDbContext db = new OurDbContext())
                 {
                     db.userModel.Add(account);
                     db.SaveChanges();
