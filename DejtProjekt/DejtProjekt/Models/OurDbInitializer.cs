@@ -43,11 +43,13 @@ namespace DejtProjekt.Models
             });
             base.Seed(context);
 
-            context.Files.Add(new File
+            
+
+           /* context.Files.Add(new File
             {
                 FileName = "trump.png",
                 ContentType = "image/png",
-                Content = (byte)0x89504E470D0A1A0A0000000D49484452000000F0000000F00802000000B1377EC5000000017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048597300000EC300000EC301C76FA8640000FFA549444154785E74FD657424679AAE8DFACF396B9FD93DD3DDA662103333670A1294CCCCCC2CA532A554,
+                Content =  0x89504E470D0A1A0A0000000D49484452000000F0000000F00802000000B1377EC5000000017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048597300000EC300000EC301C76FA8640000FFA549444154785E74FD657424679AAE8DFACF396B9FD93DD3DDA662103333670A1294CCCCCC2CA532A554
                 FileType = (FileType)1,
                 UserId = 1
 
@@ -71,8 +73,8 @@ namespace DejtProjekt.Models
                 FileType = (FileType)1,
                 UserId = 3
 
-            });
-        }
+            }); */
+        } 
 
         
     }
