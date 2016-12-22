@@ -21,12 +21,12 @@ namespace DejtProjekt.Models
         [Required]
         [StringLength(100, ErrorMessage = " {0} måste vara minst {2} karaktärer långt .", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nytt lösenord")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Bekräfta nytt lösenord")]
+        [System.ComponentModel.DataAnnotations.Compare("Nytt lösenord", ErrorMessage = "Det nya lösenordet och bekräfta lösenordet matchar inte")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Skriv in ditt förnamn.")]
@@ -38,8 +38,6 @@ namespace DejtProjekt.Models
         [Required(ErrorMessage = "Skriv in en mejladress.")]
         [EmailAddress]
         public string Email { get; set; }
-
-        //public string UserName { get; set; }
 
         public char? Hidden { get; set; }
 
@@ -59,6 +57,25 @@ namespace DejtProjekt.Models
         //public int? PostId { get; set; }  // Foreign key 
         //public int? FriendId { get; set; } // Foreign entity
 
+      /*  public class ChangePasswordUserModel
+        {
+            [Required]
+            [DataType(DataType.Password)]
+            [Display(Name = "Nuvarande lösenord")]
+            public string OldPassword { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = "{0} måste vara minst {2} karaktärer långt .", MinimumLength = 6)]
+            [DataType(DataType.Password)]
+            [Display(Name = "Nytt lösenord")]
+            public string NewPassword { get; set; }
+
+            [DataType(DataType.Password)]
+            [Display(Name = "Bekräfta nytt lösenord")]
+            [System.ComponentModel.DataAnnotations.Compare("Nytt lösenord", ErrorMessage = "Det nya lösenordet och bekräfta lösenordet matchar inte")]
+            public string ConfirmPassword { get; set; }
+        }
+        */
         public virtual ICollection<File> Files { get; set; }
     }
 }
