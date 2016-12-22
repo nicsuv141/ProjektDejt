@@ -13,7 +13,7 @@ namespace DejtProjekt.Models
     public class UserModel
     {
         [Key]
-        public int UserID { get; set; }  // Primary key
+        public int UserID { get; set; }  // Primary key primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
         public string Username { get; set; }
        
