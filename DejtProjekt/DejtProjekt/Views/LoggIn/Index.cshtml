@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Username)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.NewPassword)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.Username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
+            @Html.DisplayFor(modelItem => item.NewPassword)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
@@ -65,9 +65,9 @@
             @Html.DisplayFor(modelItem => item.Country)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
+            @Html.ActionLink("Edit", ("/../UserModels/Edit"), new { id=item.UserID }) |
+            @Html.ActionLink("Details", ("/../UserModels/Details"), new { id=item.UserID }) |
+            @Html.ActionLink("Delete", ("/../UserModels/Delete"), new { id=item.UserID })
         </td>
     </tr>
 }

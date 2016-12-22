@@ -4,33 +4,58 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Owin.Security;
 
 
 namespace DejtProjekt.Models
 {
-    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, FileType, Files")]
+    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, Files, NewPassword, ConfirmPassword  ")]
     public class UserModel
     {
         [Key]
         public int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "Skriv in ett lösenord.")]
-        public string Password { get; set; }
+       
+
+        [Required]
+        [StringLength(100, ErrorMessage = " {0} måste vara minst {2} karaktärer långt .", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "New password")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm new password")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
         [Required(ErrorMessage = "Skriv in ditt förnamn.")]
         public string FirstName { get; set; }
+
         [Required(ErrorMessage = "Skriv in ditt efternamn")]
         public string LastName { get; set; }
+        
         [Required(ErrorMessage = "Skriv in en mejladress.")]
+        [EmailAddress]
         public string Email { get; set; }
+
         //public string UserName { get; set; }
+
         public char? Hidden { get; set; }
-        public byte?[] Image { get; set; }
-        public FileType FileType { get; set; }
+
+        [Display(Name = "Välj ditt kön")]
         public bool? Gender { get; set; }
+
+        [Required]
+        [Phone]
         public string Phone { get; set; }
+
+        [Required]    
         public string Country { get; set; }
+
+        [Display(Name = "Vad letar du efter?")]
         public char? LookingFor { get; set; }
+
         //public int? PostId { get; set; }  // Foreign key 
         //public int? FriendId { get; set; } // Foreign entity
 

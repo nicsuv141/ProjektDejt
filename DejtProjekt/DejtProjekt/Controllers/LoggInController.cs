@@ -69,7 +69,7 @@ namespace DejtProjekt.Controllers
 
             using (OurDbContext db = new OurDbContext())
             {
-                var usr = db.userModel.Where(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
+                var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
                 if (usr != null)
                 {
                     Session["UserID"] = usr.UserID.ToString();
