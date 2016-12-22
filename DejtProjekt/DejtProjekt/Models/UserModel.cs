@@ -15,13 +15,14 @@ namespace DejtProjekt.Models
         [Key]
         public int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
+        [Display(Name = "Användarnamn:")]
         public string Username { get; set; }
 
 
         [Required]
         [StringLength(100, ErrorMessage = " {0} måste vara minst {2} karaktärer långt .", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Nytt lösenord")]
+        [Display(Name = "Lösenord:")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
@@ -30,25 +31,30 @@ namespace DejtProjekt.Models
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Skriv in ditt förnamn.")]
+        [Display(Name = "Förnamn:")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Skriv in ditt efternamn")]
+        [Display(Name = "Efternamn:")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Skriv in en mejladress.")]
         [EmailAddress]
+        [Display(Name = "Mejladress:")]
         public string Email { get; set; }
 
         public char? Hidden { get; set; }
 
-        [Display(Name = "Välj ditt kön")]
+        [Display(Name = "Kön:")]
         public bool? Gender { get; set; }
 
         [Required]
         [Phone]
+        [Display(Name = "Telefon:")]
         public string Phone { get; set; }
 
         [Required]
+        [Display(Name = "Nationalitet:")]
         public string Country { get; set; }
 
         [Display(Name = "Vad letar du efter?")]
