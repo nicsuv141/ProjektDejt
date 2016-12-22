@@ -29,31 +29,37 @@ namespace DejtProjekt.Controllers
         [HttpPost]
         public ActionResult Register(UserModel account, HttpPostedFileBase upload)
         {
-            
-            if (ModelState.IsValid)
+            try
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (ModelState.IsValid)
                 {
-                    var avatar = new File
+                    if (upload != null && upload.ContentLength > 0)
                     {
-                        FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileType = FileType.Avatar,
-                        ContentType = upload.ContentType
-                    };
-                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                    {
-                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        var avatar = new File
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        account.Files = new List<File> { avatar };
                     }
-                    account.Files = new List<File> { avatar };
-                }
-                using (OurDbContext db = new OurDbContext())
-                {
-                    db.userModel.Add(account);
-                    db.SaveChanges();
-                }
-                ModelState.Clear();
-                ViewBag.Message = account.FirstName + " " + account.LastName + "Succsess";  
+                    using (OurDbContext db = new OurDbContext())
+                    {
+                        db.userModel.Add(account);
+                        db.SaveChanges();
+                    }
+                    ModelState.Clear();
+                    ViewBag.Message = account.FirstName + " " + account.LastName + "Succsess";
 
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
             return View();
         }
@@ -66,20 +72,26 @@ namespace DejtProjekt.Controllers
 
         [HttpPost]
         public ActionResult Login(UserModel user) {
-
-            using (OurDbContext db = new OurDbContext())
+            try
             {
-                var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
-                if (usr != null)
+                using (OurDbContext db = new OurDbContext())
                 {
-                    Session["UserID"] = usr.UserID.ToString();
-                    Session["Username"] = usr.Username.ToString();
-                    return RedirectToAction("LoggedIn");
+                    var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
+                    if (usr != null)
+                    {
+                        Session["UserID"] = usr.UserID.ToString();
+                        Session["Username"] = usr.Username.ToString();
+                        return RedirectToAction("LoggedIn");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Username or Password is wrong");
+                    }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Username or Password is wrong");
-                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
             return View();
         }
