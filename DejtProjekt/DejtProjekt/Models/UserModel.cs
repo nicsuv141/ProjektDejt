@@ -61,3 +61,4 @@ namespace DejtProjekt.Models
 
         public virtual ICollection<File> Files { get; set; }
     }
+}
