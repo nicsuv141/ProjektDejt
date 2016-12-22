@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using DejtProjekt.Models;
 using System.Data.Entity.Infrastructure;
-using System.Threading.Tasks;
+
+
 
 namespace DejtProjekt.Controllers
 {
@@ -16,41 +17,84 @@ namespace DejtProjekt.Controllers
     {
         private OurDbContext db = new OurDbContext();
 
+
+
         // GET: UserModels
         public ActionResult aa()
         {
 
             return View(db.userModel.ToList());
         }
+
+        //public ActionResult Index(string searchString)
+        //{
+        //    string firstName = searchString.Split(' ')[0].Trim();
+        //    string lastName = searchString.Substring(searchString.IndexOf(' ') + 1);
+
+        //    var users = from m in db.userModel
+        //                select m;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        users = users.Where(s => s.FirstName.Contains(firstName) && lastName.Contains(lastName));
+        //    }
+
+        //    return View(users);
+
+        //}
+
+        
         public ActionResult Index(string searchString)
         {
-            
             var users = from m in db.userModel
                         select m;
-
-            if (!String.IsNullOrEmpty(searchString))
+            try
             {
-                var firstName = searchString.Split(' ')[0].Trim();
-                var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
-                users = users.Where(s => s.FirstName.Contains(firstName) && lastName.Contains(lastName));
-            }
+                
 
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    var firstName = searchString.Split(' ')[0].Trim();
+                    var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
+                    users = users.Where(s => s.FirstName.Contains(firstName) && lastName.Contains(lastName));
+                }
+                
+
+            }
+            
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return View(users);
         }
+    
+
+
+
 
         // GET: UserModels/Details/5
-        
+        //[@Authorize]
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
-           
-            if (userModel == null)
+            try
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                
+
+                if (userModel == null)
+                {
+                    return HttpNotFound();
+                }
+                
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
             return View(userModel);
         }
@@ -66,11 +110,18 @@ namespace DejtProjekt.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserModel userModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.userModel.Add(userModel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.userModel.Add(userModel);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
 
             return View(userModel);
@@ -79,15 +130,23 @@ namespace DejtProjekt.Controllers
         // GET: UserModels/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
-           
-            if (userModel == null)
+            try
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                
+
+                if (userModel == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
             return View(userModel);
         }
@@ -103,7 +162,7 @@ namespace DejtProjekt.Controllers
             }
             var userToUpdate = db.userModel.Find(id);
             if (TryUpdateModel(userToUpdate, "",
-                new string[] { "Username" ,"FirstName","LastName","Email", "Gender","Phone","Country" }))
+                new string[] { "Username", "FirstName", "LastName", "Email", "Gender", "Phone", "Country" }))
             {
                 try
                 {
@@ -141,14 +200,22 @@ namespace DejtProjekt.Controllers
         // GET: UserModels/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             UserModel userModel = db.userModel.Find(id);
-            if (userModel == null)
+            try
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                //UserModel userModel = db.userModel.Find(id);
+                if (userModel == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
             return View(userModel);
         }
@@ -159,8 +226,15 @@ namespace DejtProjekt.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             UserModel userModel = db.userModel.Find(id);
-            db.userModel.Remove(userModel);
-            db.SaveChanges();
+            try
+            {
+                db.userModel.Remove(userModel);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return RedirectToAction("Index");
         }
 

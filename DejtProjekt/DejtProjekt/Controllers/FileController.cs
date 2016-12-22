@@ -10,7 +10,7 @@ namespace DejtProjekt.Controllers
     public class FileController : Controller
     {
         private OurDbContext db = new OurDbContext();
-        
+
         //
         // GET: /File/
         public ActionResult Index(int id)

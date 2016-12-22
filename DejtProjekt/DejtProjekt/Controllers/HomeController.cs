@@ -12,7 +12,7 @@ namespace DejtProjekt.Controllers
         {
             return View();
         }
-        [Authorize]
+        //[Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -20,7 +20,7 @@ namespace DejtProjekt.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
