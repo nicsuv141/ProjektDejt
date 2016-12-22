@@ -13,12 +13,9 @@ using System.Threading.Tasks;
 namespace DejtProjekt.Controllers
 {
     public class UserModelsController : Controller
-    { 
-        /*  private ApplicationUserManager _userManager; */
-   
+    {
         private OurDbContext db = new OurDbContext();
 
-       
         // GET: UserModels
         public ActionResult Index()
         {
@@ -151,28 +148,7 @@ namespace DejtProjekt.Controllers
             return RedirectToAction("Index");
         }
 
-       /* [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
-            }
-            AddErrors(result);
-            return View(model);
-        } */
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
