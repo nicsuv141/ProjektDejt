@@ -23,8 +23,9 @@ namespace DejtProjekt.Controllers
             return View(db.userModel.ToList());
         }
 
-        [@Authorize]
+
         // GET: UserModels/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -88,7 +89,7 @@ namespace DejtProjekt.Controllers
             }
             var userToUpdate = db.userModel.Find(id);
             if (TryUpdateModel(userToUpdate, "",
-                new string[] { "Username, Password,FirstName,LastName,Email, Gender,Phone,Country" }))
+                new string[] { "Username,FirstName,LastName,Email, Gender,Phone,Country" }))
             {
                 try
                 {
