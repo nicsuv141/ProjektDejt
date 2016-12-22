@@ -25,9 +25,12 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                @using (Html.BeginForm("Search", "UserModels", FormMethod.Get))
+                {
                 <input type="text" class="input-sm" name="userSearch" />
                 <input type="submit" class="btn btn-default" value="Sök" />
                 @Html.Partial("_LoginPartial")
+                }
             </div>
         </div>
     </div>

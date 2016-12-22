@@ -26,7 +26,25 @@ namespace DejtProjekt.Controllers
             return View(db.userModel.ToList());
         }
 
-        
+        public ActionResult Search(string searchString)
+        {
+            string firstName = searchString.Split(' ')[0].Trim();
+            string lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
+            
+            var users = from m in db.userModel
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.FirstName.Contains(firstName) && lastName.Contains(lastName));
+            }
+
+            return View(users);
+        }
+
+
+
+
         // GET: UserModels/Details/5
         [@Authorize]
         public ActionResult Details(int? id)
