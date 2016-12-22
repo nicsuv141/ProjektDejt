@@ -17,12 +17,26 @@ namespace DejtProjekt.Controllers
         private OurDbContext db = new OurDbContext();
 
         // GET: UserModels
-        public ActionResult Index()
+        public ActionResult aa()
         {
 
             return View(db.userModel.ToList());
         }
+        public ActionResult Index(string searchString)
+        {
+            
+            var users = from m in db.userModel
+                        select m;
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var firstName = searchString.Split(' ')[0].Trim();
+                var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
+                users = users.Where(s => s.FirstName.Contains(firstName) && lastName.Contains(lastName));
+            }
+
+            return View(users);
+        }
 
         // GET: UserModels/Details/5
         
@@ -89,7 +103,7 @@ namespace DejtProjekt.Controllers
             }
             var userToUpdate = db.userModel.Find(id);
             if (TryUpdateModel(userToUpdate, "",
-                new string[] { "Username,FirstName,LastName,Email, Gender,Phone,Country" }))
+                new string[] { "Username" ,"FirstName","LastName","Email", "Gender","Phone","Country" }))
             {
                 try
                 {
