@@ -12,34 +12,40 @@ namespace DejtProjekt.Models
             context.userModel.Add(new UserModel
             {
                 Username = "DonaldTrump",
-                Password = "trump",
+                NewPassword = "trump1",
+                ConfirmPassword = "trump1",
                 FirstName = "Donald",
                 LastName = "Trump",
                 Email = "Trump@hotmail.com",
                 Phone = "123456789",
-                Country = "USA"
+                Country = "USA",
+                Gender = false
             });
 
             context.userModel.Add(new UserModel
             {
                 Username = "VladimirPutin",
-                Password = "putin",
+                NewPassword = "putin1",
+                ConfirmPassword = "putin1",
                 FirstName = "Vladimir",
                 LastName = "Putin",
                 Email = "Putin@hotmail.com",
                 Phone = "987654321",
-                Country = "Ryssland"
+                Country = "Ryssland",
+                Gender = false
             });
 
             context.userModel.Add(new UserModel
             {
                 Username = "StefanLofven",
-                Password = "lofven",
+                NewPassword = "lofven1",
+                ConfirmPassword = "lofven1",
                 FirstName = "Stefan",
                 LastName = "Lofven",
                 Email = "Lofven@hotmail.com",
                 Phone = "555555555",
-                Country = "Sverige"
+                Country = "Sverige",
+                Gender = false
             });
             base.Seed(context);
 

@@ -10,7 +10,7 @@ using DejtProjekt.Models;
 
 namespace DejtProjekt.Controllers
 {
-    //[Authorize]
+    
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
