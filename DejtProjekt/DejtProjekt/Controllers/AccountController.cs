@@ -12,6 +12,7 @@ using DejtProjekt.Models;
 
 namespace DejtProjekt.Controllers
 {
+
     [Authorize]
     public class AccountController : Controller
     {
