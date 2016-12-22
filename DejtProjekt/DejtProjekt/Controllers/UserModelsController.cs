@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using DejtProjekt.Models;
 using System.Data.Entity.Infrastructure;
-using System.Threading.Tasks;
+
+
 
 namespace DejtProjekt.Controllers
 {
@@ -16,6 +17,8 @@ namespace DejtProjekt.Controllers
     {
         private OurDbContext db = new OurDbContext();
 
+
+       
         // GET: UserModels
         public ActionResult Index()
         {
@@ -23,8 +26,9 @@ namespace DejtProjekt.Controllers
             return View(db.userModel.ToList());
         }
 
-        [@Authorize]
+        
         // GET: UserModels/Details/5
+        [@Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
