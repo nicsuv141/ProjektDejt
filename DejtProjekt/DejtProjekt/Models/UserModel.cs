@@ -16,7 +16,7 @@ namespace DejtProjekt.Models
         public int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
         public string Username { get; set; }
-       
+
 
         [Required]
         [StringLength(100, ErrorMessage = " {0} måste vara minst {2} karaktärer långt .", MinimumLength = 6)]
@@ -34,7 +34,7 @@ namespace DejtProjekt.Models
 
         [Required(ErrorMessage = "Skriv in ditt efternamn")]
         public string LastName { get; set; }
-        
+
         [Required(ErrorMessage = "Skriv in en mejladress.")]
         [EmailAddress]
         public string Email { get; set; }
@@ -48,7 +48,7 @@ namespace DejtProjekt.Models
         [Phone]
         public string Phone { get; set; }
 
-        [Required]    
+        [Required]
         public string Country { get; set; }
 
         [Display(Name = "Vad letar du efter?")]
@@ -57,7 +57,7 @@ namespace DejtProjekt.Models
         //public int? PostId { get; set; }  // Foreign key 
         //public int? FriendId { get; set; } // Foreign entity
 
-     
+
 
         public virtual ICollection<File> Files { get; set; }
     }

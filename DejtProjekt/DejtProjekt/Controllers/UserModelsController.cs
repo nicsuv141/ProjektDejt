@@ -23,6 +23,7 @@ namespace DejtProjekt.Controllers
             return View(db.userModel.ToList());
         }
 
+        [@Authorize]
         // GET: UserModels/Details/5
         public ActionResult Details(int? id)
         {
@@ -148,7 +149,8 @@ namespace DejtProjekt.Controllers
             return RedirectToAction("Index");
         }
 
-        
+       
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
