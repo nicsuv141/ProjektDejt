@@ -7,15 +7,15 @@ using System.Web;
 
 namespace DejtProjekt.Identity
 {
-    public class OurUserManager /*: UserManager<User>*/
-        {} /*
+    public class OurUserManager : UserManager<User>
+        
     {
         public OurUserManager()
-            : base(new UserStore<User>(new OurCtx("DefaultConnection")))
+            : base(new UserStore<User>(new OurCtx("B")))
         {
             this.UserValidator = new OurUserValidator(this);
             this.PasswordValidator = new OurPwValidator();
             this.ClaimsIdentityFactory = new OurClaimsIdentityFactory();
         } 
-    }*/
+    }
 }

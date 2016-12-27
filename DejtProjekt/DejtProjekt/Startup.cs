@@ -10,10 +10,10 @@ namespace DejtProjekt
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            /*app.UseCookieAuthentication(new CookieAuthenticationOptions
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "Cookie"
-            });*/
+            });
         }
     }
 }

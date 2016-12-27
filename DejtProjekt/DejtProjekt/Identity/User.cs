@@ -61,8 +61,8 @@ namespace DejtProjekt.Identity
         [Display(Name = "Vad letar du efter?")]
         public char? LookingFor { get; set; }
 
-        //public int? PostId { get; set; }  // Foreign key 
-        //public int? FriendId { get; set; } // Foreign entity
+        public int? PostId { get; set; }  // Foreign key 
+        public int? FriendId { get; set; } // Foreign entity
         */
         public string First { get; set; }
         public string Last { get; set; }
