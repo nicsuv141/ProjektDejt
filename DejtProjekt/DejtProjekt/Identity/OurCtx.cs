@@ -6,12 +6,12 @@ using System.Web;
 
 namespace DejtProjekt.Identity
 {
-    public class OurCtx  /*: IdentityDbContext<User> */
-    { }
-       /* {
+    public class OurCtx  : IdentityDbContext<User> 
+    
+        {
             public OurCtx(string connectionString)
                 : base(connectionString)
             {
             }
-        } */
+        } 
     }

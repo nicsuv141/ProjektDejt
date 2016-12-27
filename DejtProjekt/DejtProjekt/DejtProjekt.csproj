@@ -274,7 +274,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\LoggIn\Register.cshtml" />
     <Content Include="Views\LoggIn\Login.cshtml" />
     <Content Include="Views\LoggIn\LoggedIn.cshtml" />
@@ -284,6 +283,11 @@
     <Content Include="Views\UserModels\Details.cshtml" />
     <Content Include="Views\UserModels\Edit.cshtml" />
     <Content Include="Views\UserModels\Index.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Register\Success.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
