@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.Owin.Security;
-
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DejtProjekt.Models
 {
     [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, Files, NewPassword, ConfirmPassword  ")]
     public class UserModel
     {
+        
+
         [Key]
         public int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
@@ -62,11 +63,10 @@ namespace DejtProjekt.Models
 
         //public int? PostId { get; set; }  // Foreign key 
         //public int? FriendId { get; set; } // Foreign entity
-
-
+        
+        public string PersonalNumber { get; set; }
 
         public virtual ICollection<File> Files { get; set; }
-
 
 
     }

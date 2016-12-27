@@ -1,0 +1,106 @@
+﻿@model AspId_1.Identity.MyUser
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @Model.UserName</h2>
+
+@if (ViewData["message"] != null)
+{
+    <div class="alert alert-success">@ViewData["message"]</div>
+}
+
+@Html.ValidationSummary()
+
+<h3>Profile</h3>
+<form method="post" action="~/Manage/Update">
+    <input name="userid" type="hidden" value="@Model.Id">
+
+    <div class="form-group">
+        <label for="first">First Name</label>
+        <input id="first" name="first" type="text" class="form-control" value="@Model.First">
+    </div>
+
+    <div class="form-group">
+        <label for="last">Last Name</label>
+        <input id="last" name="last" type="text" class="form-control" value="@Model.Last">
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input id="age" name="age" type="text" class="form-control" value="@Model.Age">
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Update</button>
+    </div>
+</form>
+
+<hr>
+<h3>Change Password</h3>
+<form method="post" action="~/Manage/ChangePassword">
+    <input name="userid" type="hidden" value="@Model.Id">
+    <div class="form-group">
+        <label for="oldpassword">Old Password</label>
+        <input id="oldpassword" name="oldpassword" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="newpassword">New Password</label>
+        <input id="newpassword" name="newpassword" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">Change Password</button>
+    </div>
+</form>
+
+<hr>
+<h3>Claims</h3>
+<form method="post" action="~/Manage/AddClaim">
+    <input name="userid" type="hidden" value="@Model.Id">
+    <div class="form-group">
+        <label for="type">Claim Type</label>
+        <input id="type" name="type" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="value">Claim Value</label>
+        <input id="value" name="value" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">Add Claim</button>
+    </div>
+</form>
+
+@if (Model.Claims.Any())
+{
+    <table class="table table-bordered table-condensed table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Claim Type</th>
+                <th>Claim Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model.Claims)
+            {
+                <tr>
+                    <td>
+                        <form method="post" action="~/Manage/DeleteClaim">
+                            <input type="hidden" name="userid" value="@Model.Id">
+                            <input type="hidden" name="type" value="@claim.ClaimType">
+                            <input type="hidden" name="value" value="@claim.ClaimValue">
+                            <button class="btn btn-danger btn-xs">delete</button>
+                        </form>
+                    </td>
+                    <td>@claim.ClaimType</td>
+                    <td>@claim.ClaimValue</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No Claims</div>
+}

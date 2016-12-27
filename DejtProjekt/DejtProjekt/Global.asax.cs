@@ -7,6 +7,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
 using DejtProjekt.Models;
+using System.Web.Helpers;
+using System.Security.Claims;
 
 namespace DejtProjekt
 {
@@ -20,6 +22,10 @@ namespace DejtProjekt
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+         
+
+
         }
     }
 }

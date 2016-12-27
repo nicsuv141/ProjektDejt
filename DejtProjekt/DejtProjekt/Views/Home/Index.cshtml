@@ -5,28 +5,50 @@
  
 <div class="jumbotron">
     <h1>DejtProjekt</h1>
-    <p class="lead">Gör som <a href= "/Usermodels/Details/1" >Donald Trump</a>, Vladimir Putin och Stefan Löfven, bli medlem idag!</p>
+    <p class="lead">Gör som <a href= "/Usermodels/Details/1" >Donald Trump</a>, <a href="/Usermodels/Details/2">Vladimir Putin</a>, <a href="/Usermodels/Details/3">Stefan Löfven</a> och <a href="/Usermodels/Details/4">Angela Merkel</a> , bli medlem idag!</p>
     <p><a href = "/loggIn/Register" class="btn btn-primary btn-lg">Bli medlem</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <a href="/Usermodels/Details/4">
+            <img src="~/Content/Images/Angela3.jpg" alt="Angela Merkel" style="width:304px;height:228px;">
+        </a>
     </div>
+
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <a href="/Usermodels/Details/1">
+            <img src="~/Content/Images/Donald3.jpg" alt="Donald Trump" style="width:304px;height:228px;">
+        </a>
     </div>
+
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+        <a href="/Usermodels/Details/2">
+            <img src="~/Content/Images/Putin3.png" alt="Vladimir Putin" style="width:304px;height:228px;">
+        </a>    </div>
+</div> 
+
+
+
+
+ <!--
+        @{
+            ViewBag.Title = "Index";
+        }
+
+        <h2>Home</h2>
+        <ul>
+            @if (!Request.IsAuthenticated)
+            {
+                <li><a href="~/Register">Register</a></li>
+                <li><a href="~/Login">Login</a></li>
+            }
+            else
+            {
+                <li><a href="~/Logout">Logout</a></li>
+            }
+            <li><a href="~/Manage">Manage Accounts</a></li>
+        </ul>
+
+     -->
+ 
