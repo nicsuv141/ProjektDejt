@@ -47,6 +47,20 @@ namespace DejtProjekt.Models
                 Country = "Sverige",
                 Gender = false
             });
+
+            context.userModel.Add(new UserModel
+            {
+                Username = "AngelaMerkel",
+                NewPassword = "merkel1",
+                ConfirmPassword = "merkel1",
+                FirstName = "Angela",
+                LastName = "Merkel",
+                Email = "Merkel@hotmail.com",             
+                Phone = "333333333",
+                Country = "Tyskland",
+                Gender = false
+            });
+
             base.Seed(context);
 
 

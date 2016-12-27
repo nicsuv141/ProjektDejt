@@ -57,7 +57,7 @@ namespace DejtProjekt.Controllers
 
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -65,15 +65,15 @@ namespace DejtProjekt.Controllers
         }
 
         //Log
-        [RequireHttps]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [RequireHttps]
-        public ActionResult Login(UserModel user) {
+        
+        public ActionResult Login(UserModel user)
+        {
             try
             {
                 using (OurDbContext db = new OurDbContext())
@@ -91,7 +91,7 @@ namespace DejtProjekt.Controllers
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
