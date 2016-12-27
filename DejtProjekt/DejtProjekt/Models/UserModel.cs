@@ -27,7 +27,7 @@ namespace DejtProjekt.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Bekräfta nytt lösenord")]
-        [System.ComponentModel.DataAnnotations.Compare("Nytt lösenord", ErrorMessage = "Det nya lösenordet och bekräfta lösenordet matchar inte.")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "Det nya lösenordet och bekräfta lösenordet matchar inte.")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Skriv in ditt förnamn.")]

@@ -65,14 +65,14 @@ namespace DejtProjekt.Controllers
         }
 
         //Log
-        [RequireHttps]
+        //[RequireHttps]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [RequireHttps]
+        //[RequireHttps]
         public ActionResult Login(UserModel user) {
             try
             {
