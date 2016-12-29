@@ -121,9 +121,11 @@ namespace DejtProjekt.Controllers
                 string userName = sessionName.Value;
                 if (userName != null)
                 {
-                    var userIdQuery = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
-                    var userId = userIdQuery.ToList();
-                    return RedirectToAction(userId.ToString(), "Details", "UserModels");
+                    var getID = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
+                    var materializeID = getID.ToList();
+                    var ID = materializeID[0];
+
+                    return RedirectToAction("Details/" + ID, "UserModels");
 
                 }
                 else
