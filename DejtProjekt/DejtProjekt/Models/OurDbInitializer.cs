@@ -62,6 +62,14 @@ namespace DejtProjekt.Models
             });
 
 
+            context.Posts.Add(new Post
+            {
+                Message = "Putin I do not like what you did in Estonia, but darn that picture on you is so yummy",
+                Author = 1,
+                Wall = 2
+            }
+
+                );
 
             base.Seed(context);
 
