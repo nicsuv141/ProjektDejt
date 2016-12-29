@@ -61,6 +61,8 @@ namespace DejtProjekt.Models
                 Gender = false
             });
 
+
+
             base.Seed(context);
 
 
