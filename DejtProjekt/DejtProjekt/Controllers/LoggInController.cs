@@ -12,17 +12,7 @@ namespace DejtProjekt.Controllers
     public class LoggInController : Controller
     {
         
-
-        // GET: LoggIn
-        //public ActionResult Index()
-        //{
-        //    using (OurDbContext db = new OurDbContext())
-        //    {
-
-        //        return View(db.userModel.ToList());
-
-        //    }
-        //}
+        
 
 
         public ActionResult Register()
@@ -114,32 +104,6 @@ namespace DejtProjekt.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Login(string returnUrl)
-        {
-            var model = new UserModel
-            {
-                ReturnUrl = returnUrl
-            };
-
-            return View(model);
-        } 
-
-       
-
-        public ActionResult LoggedIn()
-        {
-            if (Session["UserID"] != null)
-            {
-                return View("UserModels/Details/" + Session["UserID"].ToString()); ;
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-
-        }
-
         public ActionResult Logout()
         {
             var ctx = Request.GetOwinContext();
@@ -148,6 +112,58 @@ namespace DejtProjekt.Controllers
             accountManager.SignOut("ApplicationCookie");
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult LoggedIn()
+        {
+            using (var db = new OurDbContext())
+            {
+                Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
+                string userName = sessionName.Value;
+                if (userName != null)
+                {
+                    var userIdQuery = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
+                    var userId = userIdQuery.ToList();
+                    return RedirectToAction("Details/" + userId, "UserModels");
+
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+
+            }
+        }
+
+        /*public ActionResult LoggedIn()
+        {
+
+            string userId = Session["UserID"].ToString();
+            if (Session["UserID"] != null)
+            { 
+                return RedirectToAction("Details/"+userId, "UserModels");
+                
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        } */
+
+        /*   [HttpGet]
+             public ActionResult Login(string returnUrl)
+             {
+                 var model = new UserModel
+                 {
+                     ReturnUrl = returnUrl
+                 };
+
+                 return View(model);
+             } */
+
+
+
+
 
     }
 }
