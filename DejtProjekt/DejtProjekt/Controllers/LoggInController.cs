@@ -123,7 +123,7 @@ namespace DejtProjekt.Controllers
                 {
                     var userIdQuery = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
                     var userId = userIdQuery.ToList();
-                    return RedirectToAction("Details/" + userId, "UserModels");
+                    return RedirectToAction(userId.ToString(), "Details", "UserModels");
 
                 }
                 else
