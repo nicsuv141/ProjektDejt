@@ -9,6 +9,7 @@ using System.Data.Entity;
 using DejtProjekt.Models;
 using System.Web.Helpers;
 using System.Security.Claims;
+using System.Web.Http;
 
 namespace DejtProjekt
 {
@@ -18,6 +19,7 @@ namespace DejtProjekt
         {
             Database.SetInitializer(new OurDbInitializer());
 
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
