@@ -66,6 +66,9 @@ namespace DejtProjekt.Models
         
         public string PersonalNumber { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
+        public string ReturnUrl { get; set; }
+
         public virtual ICollection<File> Files { get; set; }
 
 
