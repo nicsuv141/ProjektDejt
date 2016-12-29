@@ -12,17 +12,7 @@ namespace DejtProjekt.Controllers
     public class LoggInController : Controller
     {
         
-
-        // GET: LoggIn
-        //public ActionResult Index()
-        //{
-        //    using (OurDbContext db = new OurDbContext())
-        //    {
-
-        //        return View(db.userModel.ToList());
-
-        //    }
-        //}
+        
 
 
         public ActionResult Register()
@@ -85,8 +75,8 @@ namespace DejtProjekt.Controllers
                   var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
                     if (usr != null)
                     {
-                        //Session["UserID"] = usr.UserID.ToString();
-                        // Session["Username"] = usr.Username.ToString();
+                        Session["UserID"] = usr.UserID.ToString();
+                        Session["Username"] = usr.Username.ToString();
                         var getUserName = db.userModel.Where(u => u.Username == user.Username).Select(u => u.Username);
                         var materializeUsername = getUserName.ToList();
                         var username = materializeUsername[0];
@@ -114,24 +104,23 @@ namespace DejtProjekt.Controllers
             return View();
         }
 
-     /*   [HttpGet]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Logout()
         {
-            var model = new UserModel
-            {
-                ReturnUrl = returnUrl
-            };
+            var ctx = Request.GetOwinContext();
+            var accountManager = ctx.Authentication;
 
-            return View(model);
-        } */
+            accountManager.SignOut("ApplicationCookie");
+            return RedirectToAction("Index", "Home");
+        }
 
-       
-
-        /*public ActionResult LoggedIn()
+        public ActionResult LoggedIn()
         {
+
+            string userId = Session["UserID"].ToString();
             if (Session["UserID"] != null)
-            {
-                return View();
+            { 
+                return RedirectToAction("Details/"+userId, "UserModels");
+                
             }
             else
             {
@@ -140,14 +129,20 @@ namespace DejtProjekt.Controllers
 
         }
 
-        public ActionResult Logout()
-        {
-            var ctx = Request.GetOwinContext();
-            var accountManager = ctx.Authentication;
+      /*   [HttpGet]
+           public ActionResult Login(string returnUrl)
+           {
+               var model = new UserModel
+               {
+                   ReturnUrl = returnUrl
+               };
 
-            accountManager.SignOut("ApplicationCookie");
-            return RedirectToAction("Login", "Account");
-        }*/
+               return View(model);
+           } */
+
+
+
+       
 
     }
 }

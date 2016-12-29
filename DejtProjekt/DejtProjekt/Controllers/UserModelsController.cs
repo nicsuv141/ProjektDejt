@@ -19,13 +19,6 @@ namespace DejtProjekt.Controllers
 
 
 
-        // GET: UserModels
-        public ActionResult aa()
-        {
-
-            return View(db.userModel.ToList());
-        }
-
         //public ActionResult Index(string searchString)
         //{
         //    string firstName = searchString.Split(' ')[0].Trim();
