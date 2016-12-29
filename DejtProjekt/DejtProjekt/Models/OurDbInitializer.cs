@@ -19,7 +19,10 @@ namespace DejtProjekt.Models
                 Email = "Trump@hotmail.com",
                 Phone = "123456789",
                 Country = "USA",
-                Gender = false
+                Gender = false,
+                PersonalNumber = "196020201000",
+                LookingFor = '1',
+
             });
 
             context.userModel.Add(new UserModel
@@ -32,7 +35,9 @@ namespace DejtProjekt.Models
                 Email = "Putin@hotmail.com",
                 Phone = "987654321",
                 Country = "Ryssland",
-                Gender = false
+                Gender = false,
+                PersonalNumber = "196020201000",
+                LookingFor = '1',
             });
 
             context.userModel.Add(new UserModel
@@ -45,7 +50,11 @@ namespace DejtProjekt.Models
                 Email = "Lofven@hotmail.com",
                 Phone = "555555555",
                 Country = "Sverige",
-                Gender = false
+                Gender = false,
+                Hidden = '1',
+                PersonalNumber = "196020201000",
+                LookingFor = '1',
+                 
             });
 
             context.userModel.Add(new UserModel
@@ -58,8 +67,12 @@ namespace DejtProjekt.Models
                 Email = "Merkel@hotmail.com",             
                 Phone = "333333333",
                 Country = "Tyskland",
-                Gender = false
+                Gender = false,
+                PersonalNumber = "196020201000",
+                Hidden = '1',
+                LookingFor = '1',
             });
+
 
             base.Seed(context);
 
