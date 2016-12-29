@@ -85,8 +85,8 @@ namespace DejtProjekt.Controllers
                   var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
                     if (usr != null)
                     {
-                        //Session["UserID"] = usr.UserID.ToString();
-                        // Session["Username"] = usr.Username.ToString();
+                        Session["UserID"] = usr.UserID.ToString();
+                        Session["Username"] = usr.Username.ToString();
                         var getUserName = db.userModel.Where(u => u.Username == user.Username).Select(u => u.Username);
                         var materializeUsername = getUserName.ToList();
                         var username = materializeUsername[0];
@@ -114,7 +114,7 @@ namespace DejtProjekt.Controllers
             return View();
         }
 
-     /*   [HttpGet]
+        [HttpGet]
         public ActionResult Login(string returnUrl)
         {
             var model = new UserModel
@@ -123,15 +123,15 @@ namespace DejtProjekt.Controllers
             };
 
             return View(model);
-        } */
+        } 
 
        
 
-        /*public ActionResult LoggedIn()
+        public ActionResult LoggedIn()
         {
             if (Session["UserID"] != null)
             {
-                return View();
+                return View("UserModels/Details/" + Session["UserID"].ToString()); ;
             }
             else
             {
@@ -146,8 +146,8 @@ namespace DejtProjekt.Controllers
             var accountManager = ctx.Authentication;
 
             accountManager.SignOut("ApplicationCookie");
-            return RedirectToAction("Login", "Account");
-        }*/
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }

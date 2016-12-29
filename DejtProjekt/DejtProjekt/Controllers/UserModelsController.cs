@@ -20,7 +20,7 @@ namespace DejtProjekt.Controllers
 
 
         // GET: UserModels
-        public ActionResult aa()
+        public ActionResult ViewAll()
         {
 
             return View(db.userModel.ToList());
