@@ -115,6 +115,27 @@ namespace DejtProjekt.Controllers
 
         public ActionResult LoggedIn()
         {
+            using (var db = new OurDbContext())
+            {
+                Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
+                string userName = sessionName.Value;
+                if (userName != null)
+                {
+                    var userIdQuery = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
+                    var userId = userIdQuery.ToList();
+                    return RedirectToAction("Details/" + userId, "UserModels");
+
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+
+            }
+        }
+
+        /*public ActionResult LoggedIn()
+        {
 
             string userId = Session["UserID"].ToString();
             if (Session["UserID"] != null)
@@ -127,22 +148,22 @@ namespace DejtProjekt.Controllers
                 return RedirectToAction("Login");
             }
 
-        }
+        } */
 
-      /*   [HttpGet]
-           public ActionResult Login(string returnUrl)
-           {
-               var model = new UserModel
-               {
-                   ReturnUrl = returnUrl
-               };
+        /*   [HttpGet]
+             public ActionResult Login(string returnUrl)
+             {
+                 var model = new UserModel
+                 {
+                     ReturnUrl = returnUrl
+                 };
 
-               return View(model);
-           } */
+                 return View(model);
+             } */
 
 
 
-       
+
 
     }
 }
