@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace DejtProjekt.API
 {
-    public class ApiController : ApiController
+    public class OurApiController : ApiController
     {
     }
 }
