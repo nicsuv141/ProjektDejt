@@ -7,6 +7,6 @@ namespace DejtProjekt.Models
 {
     public class Post
     {
-
+        
     }
 }
