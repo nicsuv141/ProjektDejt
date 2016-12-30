@@ -44,7 +44,7 @@ namespace DejtProjekt.Models
         [Display(Name = "Mejladress:")]
         public string Email { get; set; }
 
-        public char? Hidden { get; set; }
+        public bool? Hidden { get; set; }
 
         [Display(Name = "Kön:")]
         public bool? Gender { get; set; }
@@ -71,7 +71,7 @@ namespace DejtProjekt.Models
 
         public virtual ICollection<File> Files { get; set; }
 
-        public virtual ICollection<Post> Posts { get; set; }
+       
 
     }
 }

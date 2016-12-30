@@ -43,12 +43,12 @@ namespace DejtProjekt.API
          */
 
         // GET api/Products    
-        public IEnumerable<Post> GetProducts()
+        public IEnumerable<Post> GetPosts()
         {
             return db.Posts;
         }
         // GET api/Products/5    
-        public IHttpActionResult GetProduct(int id)
+        public IHttpActionResult GetPost(int id)
         {        Post post = db.Posts.Find(id);
             if (post == null)
             {
