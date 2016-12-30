@@ -15,5 +15,7 @@ namespace DejtProjekt.Models
         public virtual UserModel Author { get; set; }
 
         public virtual UserModel Wall { get; set; }
+
+
     }
 }

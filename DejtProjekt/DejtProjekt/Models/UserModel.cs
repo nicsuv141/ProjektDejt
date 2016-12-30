@@ -71,6 +71,7 @@ namespace DejtProjekt.Models
 
         public virtual ICollection<File> Files { get; set; }
 
+        public virtual ICollection<Post> Posts { get; set; }
 
     }
 }
