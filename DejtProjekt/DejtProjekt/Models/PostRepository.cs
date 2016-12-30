@@ -24,17 +24,19 @@ namespace DejtProjekt.Models
 
         public IEnumerable<Post> Get()
         {
-            throw new NotImplementedException();
+            return messages.Values.OrderBy(message => message.MessageId);
         }
 
-        public bool TryGet(int id, out Post post)
+        public bool TryGet(int id, out Post message)
         {
-            throw new NotImplementedException();
+            return messages.TryGetValue(id, out message);
         }
 
-        public bool Update(Post post)
+        public bool Update(Post message)
         {
-            throw new NotImplementedException();
+            bool update = messages.ContainsKey(message.MessageId);
+            messages[message.MessageId] = message;
+            return update;
         }
     }
 }
