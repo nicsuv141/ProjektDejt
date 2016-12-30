@@ -27,19 +27,20 @@
             <img src="~/Content/Images/Putin3.png" alt="Vladimir Putin" style="width:304px;height:228px;">
         </a>
     </div>
-    div>
+<div>
     <h2>All Posts</h2>
     <ul id="posts" />
 </div>
 <div>
     <h2>Search by ID</h2>
-    <input type="text" id="prodId" size="5" />
+    <input type="text" id="MessageId" size="5" />
     <input type="button" value="Search" onclick="find();" />
     <p id="post" />
 </div>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-    <script>
-    var uri = 'api/posts';
+</div>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script>
+        var uri = '/../api/OurApi';
 
     $(document).ready(function () {
       // Send an AJAX request
@@ -54,7 +55,7 @@
     });
 
     function formatItem(item) {
-      return item.Name + ': $' + item.Price;
+      return item.Message;
     }
 
     function find() {
@@ -67,9 +68,9 @@
             $('#post').text('Error: ' + err);
           });
     }
-    </script>
 
-</div> 
+
+</script>
 
 
 
