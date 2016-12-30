@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.OData;
+
 
 
 namespace DejtProjekt.API
@@ -21,7 +23,7 @@ namespace DejtProjekt.API
         }
 
         #region Get
-        [Queryable]
+        [EnableQuery]
         public IQueryable<Post> GetPosts()
         {
             return repository.Get().AsQueryable();
