@@ -11,6 +11,8 @@ namespace DejtProjekt.Models
         [Key]
         public int MessageId { get; set; }
         public string Message { get; set; }
+        public int AuthorId { get; set; }
+        public int WallId { get; set; }
 
         public virtual UserModel Author { get; set; }
 
