@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DejtProjekt.Models;
 
 namespace DejtProjekt.Models
 {
@@ -19,10 +20,7 @@ namespace DejtProjekt.Models
                 Email = "Trump@hotmail.com",
                 Phone = "123456789",
                 Country = "USA",
-                Gender = false,
-                PersonalNumber = "196020201000",
-                LookingFor = '1',
-
+                Gender = false
             });
 
             context.userModel.Add(new UserModel
@@ -35,9 +33,7 @@ namespace DejtProjekt.Models
                 Email = "Putin@hotmail.com",
                 Phone = "987654321",
                 Country = "Ryssland",
-                Gender = false,
-                PersonalNumber = "196020201000",
-                LookingFor = '1',
+                Gender = false
             });
 
             context.userModel.Add(new UserModel
@@ -50,11 +46,7 @@ namespace DejtProjekt.Models
                 Email = "Lofven@hotmail.com",
                 Phone = "555555555",
                 Country = "Sverige",
-                Gender = false,
-                Hidden = '1',
-                PersonalNumber = "196020201000",
-                LookingFor = '1',
-                 
+                Gender = false
             });
 
             context.userModel.Add(new UserModel
@@ -67,12 +59,18 @@ namespace DejtProjekt.Models
                 Email = "Merkel@hotmail.com",             
                 Phone = "333333333",
                 Country = "Tyskland",
-                Gender = false,
-                PersonalNumber = "196020201000",
-                Hidden = '1',
-                LookingFor = '1',
+                Gender = false
             });
 
+
+            //context.Posts.Add(new Post
+            //{
+            //    Message = "Putin I do not like what you did in Estonia, but darn that picture on you is so yummy",
+            //    Author = 1,
+            //    Wall = 2
+            //}
+
+                //);
 
             base.Seed(context);
 
