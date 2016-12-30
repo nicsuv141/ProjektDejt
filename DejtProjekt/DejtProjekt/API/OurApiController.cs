@@ -20,7 +20,7 @@ namespace DejtProjekt.API
             new Post { MessageId = 1, Message = "Tomato Soup", AuthorId = 2, WallId = 3 },
             new Post { MessageId = 2, Message = "Yo-yo", AuthorId = 1, WallId = 2 },
             new Post { MessageId = 3, Message = "Hammer", AuthorId = 1, WallId = 1 }
-        }
+        };
 
         public IEnumerable<Post> GetAllProducts()
         {

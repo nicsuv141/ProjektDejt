@@ -26,12 +26,49 @@
         <a href="/Usermodels/Details/2">
             <img src="~/Content/Images/Putin3.png" alt="Vladimir Putin" style="width:304px;height:228px;">
         </a>
-    
+    </div>
+    div>
+    <h2>All Posts</h2>
+    <ul id="posts" />
+</div>
+<div>
+    <h2>Search by ID</h2>
+    <input type="text" id="prodId" size="5" />
+    <input type="button" value="Search" onclick="find();" />
+    <p id="post" />
+</div>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+    var uri = 'api/posts';
 
+    $(document).ready(function () {
+      // Send an AJAX request
+      $.getJSON(uri)
+          .done(function (data) {
+            // On success, 'data' contains a list of posts.
+            $.each(data, function (key, item) {
+              // Add a list item for the post.
+              $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
+            });
+          });
+    });
 
-    
-    
-        </div>
+    function formatItem(item) {
+      return item.Name + ': $' + item.Price;
+    }
+
+    function find() {
+      var id = $('#MessageId').val();
+      $.getJSON(uri + '/' + id)
+          .done(function (data) {
+            $('#post').text(formatItem(data));
+          })
+          .fail(function (jqXHR, textStatus, err) {
+            $('#post').text('Error: ' + err);
+          });
+    }
+    </script>
+
 </div> 
 
 
