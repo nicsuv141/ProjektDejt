@@ -26,14 +26,30 @@ namespace DejtProjekt.API
             new Post { MessageId = 3, Message = "Hammer", AuthorId = 1, WallId = 1 }
         };
 
-        public IEnumerable<Post> GetAllPosts()
-        {
-            return posts;
-        }
+        /* public IEnumerable<Post> GetAllPosts()
+         {
+             return posts;
+         }
 
-        public IHttpActionResult GetPost(int id)
+         public IHttpActionResult GetPost(int id)
+         {
+             var post = posts.FirstOrDefault((p) => p.MessageId == id);
+             if (post == null)
+             {
+                 return NotFound();
+             }
+             return Ok(post);
+         }
+         */
+
+        // GET api/Products    
+        public IEnumerable<Post> GetProducts()
         {
-            var post = posts.FirstOrDefault((p) => p.MessageId == id);
+            return db.Posts;
+        }
+        // GET api/Products/5    
+        public IHttpActionResult GetProduct(int id)
+        {        Post post = db.Posts.Find(id);
             if (post == null)
             {
                 return NotFound();
