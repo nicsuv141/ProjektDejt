@@ -1,6 +1,8 @@
 ﻿using DejtProjekt.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,6 +17,8 @@ namespace DejtProjekt.API
     //[Authorize] 
     public class OurApiController : ApiController
     {
+        private OurDbContext db = new OurDbContext();
+
         Post[] posts = new Post[]
         {
             new Post { MessageId = 1, Message = "Tomato Soup", AuthorId = 2, WallId = 3 },
@@ -22,12 +26,12 @@ namespace DejtProjekt.API
             new Post { MessageId = 3, Message = "Hammer", AuthorId = 1, WallId = 1 }
         };
 
-        public IEnumerable<Post> GetAllProducts()
+        public IEnumerable<Post> GetAllPosts()
         {
             return posts;
         }
 
-        public IHttpActionResult GetProduct(int id)
+        public IHttpActionResult GetPost(int id)
         {
             var post = posts.FirstOrDefault((p) => p.MessageId == id);
             if (post == null)
@@ -36,6 +40,72 @@ namespace DejtProjekt.API
             }
             return Ok(post);
         }
+
+        // PUT api/Posts/5    
+        public IHttpActionResult PutPost(int id, Post post)
+        {
+            if (ModelState.IsValid && id == post.MessageId)
+            {
+                db.Entry(post).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                return Ok(post);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        // POST api/Posts    
+        public IHttpActionResult PostPost(Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Posts.Add(post);
+                db.SaveChanges();
+                var uri = new Uri( Url.Link(                    
+                    "DefaultApi",                   
+                    new { id = post.MessageId }));
+                return Created(uri, post);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        // DELETE api/Posts/5    
+        public IHttpActionResult DeletePost(int id)
+        {
+            Post post = db.Posts.Find(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            db.Posts.Remove(post);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+
 
 
         /*  IPostRepository repository;
