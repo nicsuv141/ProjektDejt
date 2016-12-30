@@ -15,9 +15,32 @@ namespace DejtProjekt.API
     //[Authorize] 
     public class OurApiController : ApiController
     {
-        IPostRepository repository;
+        Post[] posts = new Post[]
+        {
+            new Post { MessageId = 1, Message = "Tomato Soup", AuthorId = 2, WallId = 3 },
+            new Post { MessageId = 2, Message = "Yo-yo", AuthorId = 1, WallId = 2 },
+            new Post { MessageId = 3, Message = "Hammer", AuthorId = 1, WallId = 1 }
+        }
 
-        public OurApiController(IPostRepository repository)
+        public IEnumerable<Post> GetAllProducts()
+        {
+            return posts;
+        }
+
+        public IHttpActionResult GetProduct(int id)
+        {
+            var post = posts.FirstOrDefault((p) => p.MessageId == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
+
+
+        /*  IPostRepository repository;
+
+       public OurApiController(IPostRepository repository)
         {
             this.repository = repository;
         }
@@ -64,7 +87,7 @@ namespace DejtProjekt.API
         {
             return repository.Get().Skip(pageIndex * pageSize).Take(pageSize);
         }
-        #endregion
-        
+        #endregion */
+
     }
 }
