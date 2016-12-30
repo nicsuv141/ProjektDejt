@@ -37,6 +37,10 @@
     <input type="button" value="Search" onclick="find();" />
     <p id="post" />
 </div>
+
+    <h2>Add </h2>
+    <input type="text" id="Message" size="5" />
+   <input type="button" value="Search" onclick="add();" />
 </div>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
@@ -68,6 +72,31 @@
             $('#post').text('Error: ' + err);
           });
     }
+
+    function Add() {
+        var message = $('#Message').val();
+        var author = 1;
+        var wall = 2;
+        $.ajax({
+            type : "POST",
+            contentType: "application/json; charset=utf-8",
+            data:{"post:" + JSON.stringify(post)+ ")"},
+            url:"Home/GetData",
+            success:function(data)
+            {
+                alert("Booooom  ")            
+            },
+            error: function(result){
+                alert("Something went wrong");
+            }     
+            
+        
+        })
+    }
+
+
+
+        function
 
 
     </script>
