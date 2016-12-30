@@ -8,10 +8,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DejtProjekt.Models
 {
-    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, Files, NewPassword, ConfirmPassword,PersonalNumber  ")]
+    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, Files, NewPassword, ConfirmPassword  ")]
     public class UserModel
     {
         
+
         [Key]
         public int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
@@ -70,6 +71,7 @@ namespace DejtProjekt.Models
 
         public virtual ICollection<File> Files { get; set; }
 
-        //public virtual ICollection<File> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+
     }
 }

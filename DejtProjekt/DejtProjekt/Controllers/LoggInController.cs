@@ -11,6 +11,9 @@ namespace DejtProjekt.Controllers
     [AllowAnonymous]
     public class LoggInController : Controller
     {
+        
+        
+
 
         public ActionResult Register()
         {
