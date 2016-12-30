@@ -63,6 +63,13 @@ namespace DejtProjekt.Models
             });
 
 
+            context.Posts.Add(new Post
+            {
+                Message = "Boom",
+                AuthorId = 1,
+                WallId = 2
+            });
+
             //context.Posts.Add(new Post
             //{
             //    Message = "Putin I do not like what you did in Estonia, but darn that picture on you is so yummy",
@@ -70,7 +77,7 @@ namespace DejtProjekt.Models
             //    Wall = 2
             //}
 
-                //);
+            //);
 
             base.Seed(context);
 
