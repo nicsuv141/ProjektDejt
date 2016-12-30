@@ -20,7 +20,12 @@ namespace DejtProjekt.Models
                 Email = "Trump@hotmail.com",
                 Phone = "123456789",
                 Country = "USA",
-                Gender = false
+                Gender = false,
+                Hidden = false,
+                LookingFor = '1',
+                PersonalNumber = "197004051321",
+
+
             });
 
             context.userModel.Add(new UserModel
@@ -33,7 +38,10 @@ namespace DejtProjekt.Models
                 Email = "Putin@hotmail.com",
                 Phone = "987654321",
                 Country = "Ryssland",
-                Gender = false
+                Gender = false,
+                Hidden = false,
+                LookingFor = '3',
+                PersonalNumber = "197004051321",
             });
 
             context.userModel.Add(new UserModel
@@ -46,7 +54,10 @@ namespace DejtProjekt.Models
                 Email = "Lofven@hotmail.com",
                 Phone = "555555555",
                 Country = "Sverige",
-                Gender = false
+                Gender = false,
+                Hidden = false,
+                LookingFor = '1',
+                PersonalNumber = "197004051321",
             });
 
             context.userModel.Add(new UserModel
@@ -56,10 +67,38 @@ namespace DejtProjekt.Models
                 ConfirmPassword = "merkel1",
                 FirstName = "Angela",
                 LastName = "Merkel",
-                Email = "Merkel@hotmail.com",             
+                Email = "Merkel@hotmail.com",
                 Phone = "333333333",
                 Country = "Tyskland",
-                Gender = false
+                Gender = false,
+                Hidden = false,
+                LookingFor = '2',
+                PersonalNumber = "197004051321",
+
+            });
+
+            context.Posts.Add(new Post
+            {
+                Message = "Boom",
+            AuthorId = 1,
+            WallId = 2
+            
+            });
+
+            context.Posts.Add(new Post
+            {
+                Message = "What the Fuck",
+                AuthorId = 3,
+                WallId = 2
+
+            });
+
+            context.Posts.Add(new Post
+            {
+                Message = "Please work",
+                AuthorId = 3,
+                WallId = 1
+
             });
 
 
