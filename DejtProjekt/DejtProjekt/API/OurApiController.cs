@@ -80,22 +80,26 @@ namespace DejtProjekt.API
         }
 
         // POST api/Posts    
-        public IHttpActionResult PostPost(Post post)
+         public IHttpActionResult PostPost(Post post)
+         {
+             if (ModelState.IsValid)
+             {
+                 db.Posts.Add(post);
+                 db.SaveChanges();
+                 var uri = new Uri( Url.Link(                    
+                     "DefaultApi",                   
+                     new { id = post.MessageId }));
+                 return Created(uri, post);
+             }
+             else
+             {
+                 return BadRequest(ModelState);
+             }
+         } 
+
+        /*public void Post([FromBody]string name)
         {
-            if (ModelState.IsValid)
-            {
-                db.Posts.Add(post);
-                db.SaveChanges();
-                var uri = new Uri( Url.Link(                    
-                    "DefaultApi",                   
-                    new { id = post.MessageId }));
-                return Created(uri, post);
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
-        }
+        } /*
 
         // DELETE api/Posts/5    
         public IHttpActionResult DeletePost(int id)

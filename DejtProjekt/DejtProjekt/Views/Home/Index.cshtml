@@ -40,8 +40,8 @@
 
     <h2>Add </h2>
     <input type="text" id="Message" size="5" />
-   <input type="button" value="Search" onclick="add();" />
-</div>
+   <input type="button" value="Post" onclick="add();" />
+</div> 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
         var uri = '/../api/OurApi';
@@ -73,15 +73,16 @@
           });
     }
 
-    function Add() {
+   function add() {
         var message = $('#Message').val();
         var author = 1;
         var wall = 2;
         $.ajax({
             type : "POST",
             contentType: "application/json; charset=utf-8",
-            data:{"post:" + JSON.stringify(post)+ ")"},
-            url:"Home/GetData",
+            dataType: 'json',
+            data: JSON.stringify(message, author, wall),
+            url:'/../api/OurApi/Posts',
             success:function(data)
             {
                 alert("Booooom  ")            
@@ -92,11 +93,11 @@
             
         
         })
-    }
+    } 
 
 
 
-        function
+        
 
 
     </script>
