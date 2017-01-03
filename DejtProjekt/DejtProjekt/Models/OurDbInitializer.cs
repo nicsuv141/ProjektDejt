@@ -22,7 +22,7 @@ namespace DejtProjekt.Models
                 Country = "USA",
                 Gender = false,
                 Hidden = false,
-                LookingFor = '1',
+                LookingFor = 1,
                 PersonalNumber = "197004051321",
 
 
@@ -40,7 +40,7 @@ namespace DejtProjekt.Models
                 Country = "Ryssland",
                 Gender = false,
                 Hidden = false,
-                LookingFor = '3',
+                LookingFor = 3,
                 PersonalNumber = "197004051321",
             });
 
@@ -56,7 +56,7 @@ namespace DejtProjekt.Models
                 Country = "Sverige",
                 Gender = false,
                 Hidden = false,
-                LookingFor = '1',
+                LookingFor = 1,
                 PersonalNumber = "197004051321",
             });
 
@@ -72,7 +72,7 @@ namespace DejtProjekt.Models
                 Country = "Tyskland",
                 Gender = false,
                 Hidden = false,
-                LookingFor = '2',
+                LookingFor = 2,
                 PersonalNumber = "197004051321",
 
             });

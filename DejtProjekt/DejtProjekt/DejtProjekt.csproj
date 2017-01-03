@@ -320,6 +320,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\UserModels\DisplayTemplates\IsMale.cshtml" />
     <Content Include="Views\UserModels\DisplayTemplates\IsHidden.cshtml" />
+    <Content Include="Views\UserModels\DisplayTemplates\IsLookingFor.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
