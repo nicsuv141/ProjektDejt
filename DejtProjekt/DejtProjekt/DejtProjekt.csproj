@@ -321,9 +321,7 @@
     <Content Include="Views\UserModels\DisplayTemplates\IsMale.cshtml" />
     <Content Include="Views\UserModels\DisplayTemplates\IsHidden.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Identity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.ttf" />

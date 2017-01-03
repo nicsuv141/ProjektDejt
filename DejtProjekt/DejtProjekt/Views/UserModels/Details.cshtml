@@ -100,3 +100,107 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div>
+    <h2>All Posts</h2>
+    <ul id="posts" />
+</div>
+<div>
+    <h2>Search by ID</h2>
+    <input type="text" id="MessageId" size="5" />
+    <input type="button" value="Search" onclick="find();" />
+    <p id="post" />
+</div>
+<div>
+    <h2>Add </h2>
+    <textarea type="text" id="Message" size="50"></textarea>
+    <input type="button" value="Post" onclick="add();" />
+</div>
+
+<div>
+    <h2>Remove by ID</h2>
+    <input type="text" id="MessageIdRemove" size="5" />
+    <input type="button" value="Remove" onclick="remove();" />
+    <p id="removePost" />
+</div>
+    </div>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script>
+        var uri = '/../api/OurApi';
+
+    $(document).ready(function () {
+      // Send an AJAX request
+      $.getJSON(uri)
+          .done(function (data) {
+            // On success, 'data' contains a list of posts.
+            $.each(data, function (key, item) {
+              // Add a list item for the post.
+              $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
+            });
+          });
+    });
+
+    function formatItem(item) {
+      return item.Message;
+    }
+
+    function find() {
+      var id = $('#MessageId').val();
+      $.getJSON(uri + '/' + id)
+          .done(function (data) {
+            $('#post').text(formatItem(data));
+          })
+          .fail(function (jqXHR, textStatus, err) {
+            $('#post').text('Error: ' + err);
+          });
+    }
+
+
+   function add() {
+        var mes = $('#Message').val();
+        var author = 1;
+        var wall = 2;
+        var post = { Message: mes, AuthorId: '1', WallId: '2' };
+        $.ajax({
+            type : "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(post),
+            url:'/../api/OurApi/Posts',
+            success:function(data)
+            {
+                alert("Booooom ")
+            },
+            error: function(result){
+                alert("Something went wrong");
+            }
+
+
+        })
+   }
+   function remove() {
+       var idRemove = $('#MessageIdRemove').val();
+       var post = { MessageId: idRemove };
+       $.ajax({
+            type: 'DELETE',
+           contentType: "application/json; charset=utf-8",
+           dataType: 'json',
+           data: post,
+           url: '/../api/OurApi/' + '/' + idRemove,
+           success: function (data, textStatus, xhr) {
+               alert('The Message has been deleted');
+           },
+           error: function (xhr, textStatus, errorThrown) {
+               alert("An error occurred!!");
+           }
+       })
+   }
+
+
+
+
+
+
+
+</script>
+
