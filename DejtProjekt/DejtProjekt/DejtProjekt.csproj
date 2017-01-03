@@ -319,9 +319,7 @@
     <Content Include="Views\UserModels\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Identity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.ttf" />
