@@ -42,12 +42,12 @@ namespace DejtProjekt.API
          }
          */
 
-        // GET api/Products    
+        // GET api/Posts    
         public IEnumerable<Post> GetPosts()
         {
             return db.Posts;
         }
-        // GET api/Products/5    
+        // GET api/Posts/5    
         public IHttpActionResult GetPost(int id)
         {        Post post = db.Posts.Find(id);
             if (post == null)
@@ -79,25 +79,29 @@ namespace DejtProjekt.API
             }
         }
 
-        // POST api/Posts    
+        // POST api/Posts   
+        [HttpPost]
         public IHttpActionResult PostPost(Post post)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Posts.Add(post);
-                db.SaveChanges();
-                var uri = new Uri( Url.Link(                    
-                    "DefaultApi",                   
-                    new { id = post.MessageId }));
-                return Created(uri, post);
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
-        }
+         {
+             if (ModelState.IsValid)
+             {
+                 db.Posts.Add(post);
+                 db.SaveChanges();
+                 var uri = new Uri( Url.Link(                    
+                     "DefaultApi",                   
+                     new { id = post.MessageId }));
+                 return Created(uri, post);
+             }
+             else
+             {
+                 return BadRequest(ModelState);
+             }
+         }
+
+
 
         // DELETE api/Posts/5    
+        [HttpDelete]
         public IHttpActionResult DeletePost(int id)
         {
             Post post = db.Posts.Find(id);
