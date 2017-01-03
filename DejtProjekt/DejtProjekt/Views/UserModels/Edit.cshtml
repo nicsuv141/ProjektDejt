@@ -71,10 +71,10 @@
             @Html.LabelFor(model => model.Hidden, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.DropDownListFor(model => model.Gender, new SelectListItem[]
+                    @Html.DropDownListFor(model => model.Hidden, new SelectListItem[]
                { new SelectListItem {Value = "True", Text = "Ja" },
                new SelectListItem { Value = "False", Text = "Nej"} },
-               new { htmlAttributes = new { id = "Gender", @class = "form-control" } })
+               new { htmlAttributes = new { id = "Hidden", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Hidden, "", new { @class = "text-danger" })
                 </div>
             </div>

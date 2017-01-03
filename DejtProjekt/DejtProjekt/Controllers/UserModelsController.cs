@@ -155,7 +155,7 @@ namespace DejtProjekt.Controllers
             }
             var userToUpdate = db.userModel.Find(id);
             if (TryUpdateModel(userToUpdate, "",
-                new string[] { "Username", "FirstName", "LastName", "Email", "Gender", "Phone", "Country" }))
+                new string[] { "Username", "FirstName", "LastName", "Email", "Gender", "Phone", "Country", "Hidden", "LookingFor", "PersonalNumber" }))
             {
                 try
                 {
