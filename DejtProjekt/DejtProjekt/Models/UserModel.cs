@@ -44,9 +44,12 @@ namespace DejtProjekt.Models
         [Display(Name = "Mejladress:")]
         public string Email { get; set; }
 
+        [Display(Name = "Anonym:")]
+        [UIHint("IsHidden")]
         public bool? Hidden { get; set; }
 
         [Display(Name = "Kön:")]
+        [UIHint("IsMale")]
         public bool? Gender { get; set; }
 
         [Required]

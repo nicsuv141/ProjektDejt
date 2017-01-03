@@ -318,6 +318,8 @@
     <Content Include="Views\UserModels\Edit.cshtml" />
     <Content Include="Views\UserModels\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserModels\DisplayTemplates\IsMale.cshtml" />
+    <Content Include="Views\UserModels\DisplayTemplates\IsHidden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Identity\" />

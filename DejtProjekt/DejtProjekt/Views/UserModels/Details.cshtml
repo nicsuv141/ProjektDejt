@@ -1,4 +1,5 @@
 ﻿@model DejtProjekt.Models.UserModel
+
 @{
     ViewBag.Title = "Details";
 }
@@ -60,9 +61,18 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Hidden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hidden)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Gender)
         </dt>
 
+        
         <dd>
             @Html.DisplayFor(model => model.Gender)
         </dd>
