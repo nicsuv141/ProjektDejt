@@ -115,25 +115,37 @@ namespace DejtProjekt.Controllers
 
         public ActionResult LoggedIn()
         {
-            using (var db = new OurDbContext())
-            {
-                Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
-                string userName = sessionName.Value;
-                if (userName != null)
-                {
-                    var getID = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
-                    var materializeID = getID.ToList();
-                    var ID = materializeID[0];
 
-                    return RedirectToAction("Details/" + ID, "UserModels");
+            if (GetUserId() != 0){ 
 
-                }
-                else
-                {
-                    return RedirectToAction("Login");
-                }
+                int ID = GetUserId();
+
+                return RedirectToAction("Details/" + ID, "UserModels");
 
             }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+            
+        }
+
+        public int GetUserId() {
+            using (var db = new OurDbContext())
+            { 
+            Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
+            string userName = sessionName.Value;
+            if (userName != null)
+            {
+                var getID = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
+                var materializeID = getID.ToList();
+                var ID = materializeID[0];
+                return ID;
+                }
+        }
+            return 0;
+
         }
 
         /*public ActionResult LoggedIn()

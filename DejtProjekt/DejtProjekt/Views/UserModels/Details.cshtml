@@ -121,7 +121,7 @@
 </div>
 <div>
     <h2>Add </h2>
-    <textarea type="text" id="Message" size="50"></textarea>
+    <input type="text" id="Message" size="50" />
     <input type="button" value="Post" onclick="add();" />
 </div>
 
@@ -131,7 +131,8 @@
     <input type="button" value="Remove" onclick="remove();" />
     <p id="removePost" />
 </div>
-    </div>
+
+  
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
 <script>
         var uri = '/../api/OurApi';
@@ -164,11 +165,20 @@
     }
 
 
-   function add() {
+    function add() {
+        debugger
         var mes = $('#Message').val();
-        var author = 1;
+       
+        var author =
+           ($.ajax({
+                type: "POST",
+                url: "/../Controllers/LoggIn/GetUserId",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) { alert(data); }
+            }));
         var wall = 2;
-        var post = { Message: mes, AuthorId: '1', WallId: '2' };
+        var post = { Message: mes, AuthorId: author, WallId: '2' };
         $.ajax({
             type : "POST",
             contentType: "application/json; charset=utf-8",
@@ -185,7 +195,8 @@
 
 
         })
-   }
+    }
+    debugger
    function remove() {
        var idRemove = $('#MessageIdRemove').val();
        var post = { MessageId: idRemove };
@@ -212,3 +223,32 @@
 
 </script>
 
+<div id="dailydeal">   
+     @Ajax.ActionLink("Click here to see today's special!",
+    "DailyDeal",
+    null,
+    new AjaxOptions
+    { UpdateTargetId = "dailydeal",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET" },
+    new { @class = "btn btn-primary" }) 
+    </div>
+
+  public ActionResult DailyDeal()        
+{            
+var album = GetDailyDeal();
+            
+return PartialView("_DailyDeal", album);        
+}
+        
+// Select an album and discount it by 50%        
+
+private Album GetDailyDeal()        
+{            
+var album = storeDB.Albums                
+.OrderBy(a => System.Guid.NewGuid())                
+.First();
+            
+album.Price *= 0.5m;            
+return album;
+}        
