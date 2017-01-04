@@ -49,7 +49,7 @@ namespace DejtProjekt.Controllers
                 {
                     var firstName = searchString.Split(' ')[0].Trim();
                     var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
-                    users = users.Where(s => s.FirstName.Contains(firstName) && lastName.Contains(lastName));
+                    users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName));
                 }
                 
 
