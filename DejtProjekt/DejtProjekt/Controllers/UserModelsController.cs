@@ -43,18 +43,54 @@ namespace DejtProjekt.Controllers
                         select m;
             try
             {
-                
 
-                if (!String.IsNullOrEmpty(searchString))
+                var firstName = searchString.Split(' ')[0].Trim();
+                var lastName = "0";
+                int checkSubString = searchString.IndexOf(' ');
+
+
+                if (checkSubString != -1)
                 {
-                    var firstName = searchString.Split(' ')[0].Trim();
-                    var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
-                    users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden.Equals(false) );
+                    lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
                 }
-                
+                else if (checkSubString == -1)
+                {
+
+                    users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+
+                }
+                if (!String.IsNullOrEmpty(searchString) && lastName == "0")
+                {
+
+                    users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+                }
+
+                if (!String.IsNullOrEmpty(searchString) && lastName != "0")
+                {
+
+                    users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden == false);
+                }
 
             }
-            
+            //var search = searchString.Split(' ')[0].Trim();
+
+            //var checkFirstName1 = users = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);
+            //var a = 1;
+            //if (checkFirstName1.ToList() != null) {
+            //    a = 0;
+            //}
+
+
+
+
+            //if (a == 0) { users = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);  }
+            //           else if (a == 1){
+            //              users = users.Where(s => s.LastName.Contains(search) && s.Hidden == false);
+            //          }
+            //      }
+
+
+
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -63,7 +99,11 @@ namespace DejtProjekt.Controllers
         }
     
 
-
+         //if ((users = users.Where(s => s.FirstName.StartsWith(firstName) && s.Hidden == false)) != null) { users = users.Where(s => s.FirstName.StartsWith(firstName) && s.Hidden == false }
+         //           else {
+         //               users = users.Where(s => s.FirstName.EndsWith(firstName) && s.Hidden == false);
+         //           }
+         //       }
 
 
         // GET: UserModels/Details/5
