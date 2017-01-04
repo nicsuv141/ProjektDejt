@@ -43,15 +43,31 @@ namespace DejtProjekt.Controllers
                         select m;
             try
             {
-                
+                var firstName = searchString.Split(' ')[0].Trim();
+                var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
 
-                if (!String.IsNullOrEmpty(searchString))
+                if (!String.IsNullOrEmpty(searchString) && lastName == null)
                 {
-                    var firstName = searchString.Split(' ')[0].Trim();
-                    var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
-                    users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden.Equals(false) );
+                    users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
                 }
-                
+
+                else if (!String.IsNullOrEmpty(searchString) && firstName == null)
+                {
+                    users = users.Where(s => s.LastName.Contains(firstName) && s.Hidden == false);
+                }
+
+                else if (!String.IsNullOrEmpty(searchString))
+                {
+                    users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden == false);
+                }
+
+                //if (!String.IsNullOrEmpty(searchString))
+                //{
+                //    var firstName = searchString.Split(' ')[0].Trim();
+                //    var lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
+                //    users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden == false );
+                //}
+
 
             }
             
