@@ -26,7 +26,9 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    @Html.HiddenFor(modelItem => item.Hidden)
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Username)
@@ -44,6 +46,7 @@
             @Html.ActionLink("Visa Profil", "Details", new { id=item.UserID })            
         </td>
     </tr>
+
 }
 
 </table>
