@@ -168,15 +168,16 @@
     function add() {
         debugger
         var mes = $('#Message').val();
-       
+        
         var author =
            ($.ajax({
-                type: "POST",
+                type: "GET",
                 url: "/../Controllers/LoggIn/GetUserId",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) { alert(data); }
-            }));
+           }));
+        
         var wall = 2;
         var post = { Message: mes, AuthorId: author, WallId: '2' };
         $.ajax({
@@ -196,7 +197,7 @@
 
         })
     }
-    debugger
+    
    function remove() {
        var idRemove = $('#MessageIdRemove').val();
        var post = { MessageId: idRemove };
@@ -223,7 +224,7 @@
 
 </script>
 
-<div id="dailydeal">   
+@*div id="dailydeal">   
      @Ajax.ActionLink("Click here to see today's special!",
     "DailyDeal",
     null,
@@ -251,4 +252,4 @@ var album = storeDB.Albums
             
 album.Price *= 0.5m;            
 return album;
-}        
+}*@        
