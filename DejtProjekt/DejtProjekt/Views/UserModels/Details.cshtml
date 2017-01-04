@@ -101,7 +101,7 @@
             @Html.DisplayFor(model => model.Country)
         </dd>
 
-
+        @Html.HiddenFor(model => model.UserID)
     </dl>
 </div>
 <p>
@@ -165,38 +165,43 @@
     }
 
 
-    function add() {
-        debugger
-        var mes = $('#Message').val();
+   
+       
+        function add() {
         
-        var author =
-           ($.ajax({
-                type: "GET",
-                url: "/../Controllers/LoggIn/GetUserId",
+            var mes = $('#Message').val();
+            var wall = $('#UserID').val();
+            alert(wall);
+            var author;
+            $.ajax({
+                type: "POST",
+
+                url: "/../LoggIn/GetUserId",
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) { alert(data); }
-           }));
-        
-        var wall = 2;
-        var post = { Message: mes, AuthorId: author, WallId: '2' };
-        $.ajax({
-            type : "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: 'json',
-            data: JSON.stringify(post),
-            url:'/../api/OurApi/Posts',
-            success:function(data)
-            {
-                alert("Booooom ")
-            },
-            error: function(result){
-                alert("Something went wrong");
-            }
+                dataType: "text",
+                async: false,
+                success: function (data) { author = data; alert(data); }
+            });
+
+            
+            var post = { Message: mes, AuthorId: author, WallId: wall };
+            $.ajax({
+                type : "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: JSON.stringify(post),
+                url:'/../api/OurApi/Posts',
+                success:function(data)
+                {
+                    alert("Booooom ")
+                },
+                error: function(result){
+                    alert("Something went wrong");
+                }
 
 
-        })
-    }
+            })
+        }
     
    function remove() {
        var idRemove = $('#MessageIdRemove').val();
