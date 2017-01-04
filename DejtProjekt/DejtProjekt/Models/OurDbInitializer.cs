@@ -77,6 +77,23 @@ namespace DejtProjekt.Models
 
             });
 
+            context.userModel.Add(new UserModel
+            {
+                Username = "Xxx",
+                NewPassword = "xxxxxx1",
+                ConfirmPassword = "xxxxxx1",
+                FirstName = "Alex",
+                LastName = "Jansson",
+                Email = "Alex@gmail.com",
+                Phone = "1111111111",
+                Country = "Sweden",
+                Gender = false,
+                Hidden = false,
+                LookingFor = 3,
+                PersonalNumber = "199404051321",
+
+            });
+
             context.Posts.Add(new Post
             {
                 Message = "Boom",

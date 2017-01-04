@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DejtProjekt.Models
 {
-    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, Files, NewPassword, ConfirmPassword  ")]
+    [Bind(Include = "Username, Password,FirstName,LastName,Email,Hidden, Image, Gender,Phone,Country,LookingFor, Files, NewPassword, ConfirmPassword,friends  ")]
     public class UserModel
     {
         
@@ -75,7 +75,7 @@ namespace DejtProjekt.Models
 
         public virtual ICollection<File> Files { get; set; }
 
-       
+        public virtual ICollection<Friend> Friends { get; set; }
 
     }
 }

@@ -229,7 +229,7 @@ namespace DejtProjekt.Controllers
             }
             return View(userToUpdate);
         }
-
+        
         // GET: UserModels/Delete/5
         public ActionResult Delete(int? id)
         {
