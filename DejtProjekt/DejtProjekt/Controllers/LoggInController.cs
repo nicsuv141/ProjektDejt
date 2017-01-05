@@ -149,26 +149,30 @@ namespace DejtProjekt.Controllers
             return 0;
 
         }
-        public ActionResult AddFriend(int? id)
-        {
+        //public ActionResult AddFriend(int? id)
+        //{
+        //    OurDbContext db = new OurDbContext();
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    UserModel user = db.userModel.Find(id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(user);
+        //}
+
+        public ActionResult AddFriend([Bind(Include= "Friends")] UserModel user, int friendId) {
             OurDbContext db = new OurDbContext();
-            if (id == null)
+
+            if (user == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserModel user = db.userModel.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
 
-        public void AddFriend([Bind(Include= "Friends")] UserModel user, int friendId) {
-            OurDbContext db = new OurDbContext();
-
-            
-                var oneFriend = new Friend
+            var oneFriend = new Friend
                 {
                     UserId = GetUserId(),
                     FriendId = friendId,
@@ -182,6 +186,7 @@ namespace DejtProjekt.Controllers
                 db.SaveChanges();
 
             }
+            return View(user);
         }
 
 
