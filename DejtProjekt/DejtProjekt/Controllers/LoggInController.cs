@@ -151,7 +151,7 @@ namespace DejtProjekt.Controllers
         }
 
 
-        public void AddFriend(UserModel friend, int friendId) {
+        public void AddFriend([Bind(Include = "Friends")] UserModel friend, int friendId) {
             OurDbContext db = new OurDbContext();
 
 
