@@ -230,9 +230,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\LoggInController.cs" />
-    <Compile Include="..\..\..\..\..\Desktop\s\UserModelsController.cs">
-      <Link>Controllers\UserModelsController.cs</Link>
-    </Compile>
+    <Compile Include="Controllers\UserModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

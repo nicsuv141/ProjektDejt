@@ -306,7 +306,75 @@ namespace DejtProjekt.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ShowFriends()
+        {
+            var friend = from m in db.Friend
+                         select m;
+            try
+            {
 
+                int Uid = LoggInController.GetUserId();
+                friend = friend.Where(s => s.UserId.Equals(Uid));
+
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return View(friend);
+        }
+
+        public ActionResult showFriend(int id)
+        {
+            return RedirectToAction("Details/" + id, "UserModels");
+        }
+
+        [HttpGet]
+        public ActionResult AddFriend(int friendId)
+        {
+            OurDbContext db = new OurDbContext();
+
+            int Uid = LoggInController.GetUserId();
+
+            var getFriendConnection = db.Friend.Where(u => u.FriendId == friendId && u.UserId == Uid).Select(u => u.UserId);
+            var materializeFriend = getFriendConnection.ToList();
+            bool isEmptyFriend = !materializeFriend.Any();
+
+
+            if (Uid == friendId)
+            {
+
+                return new HttpStatusCodeResult(404, "You can not send a friend request to yourself");
+            }
+
+            else if (isEmptyFriend)
+            {
+
+                var userToUpdate = db.userModel.Find(Uid);
+
+                var oneFriend = new Friend
+                {
+                    UserId = Uid,
+                    FriendId = friendId
+
+                };
+
+
+                userToUpdate.Friends = new List<Friend> { oneFriend };
+                db.Entry(userToUpdate).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return new HttpStatusCodeResult(404, "Done");
+            }
+
+            else if (!isEmptyFriend)
+            {
+
+                return new HttpStatusCodeResult(404, "You are already friends");
+            }
+            return new HttpStatusCodeResult(404, "Done");
+        }
 
         protected override void Dispose(bool disposing)
         {
