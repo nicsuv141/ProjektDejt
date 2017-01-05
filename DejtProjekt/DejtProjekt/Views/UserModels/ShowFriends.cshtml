@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DejtProjekt.Models.Friend>
+﻿@model IEnumerable<DejtProjekt.Models.UserModel>
 
 @{
     ViewBag.Title = "ShowFriends";
@@ -12,32 +12,23 @@
     
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FriendId)
+          
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>
+       
         <th></th>
     </tr>
 @foreach (var item in Model)
 {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FriendId)
+                @Html.DisplayFor(modelItem => item.UserID)
+
+
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User)
-            </td>           
-            <td>
-                @Html.ActionLink("Visa Profil", "Details", new { id = item.FriendId })
-            </td>
+            
         </tr>
 
     }
     </table>
+
+

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -8,8 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using DejtProjekt.Models;
 using System.Data.Entity.Infrastructure;
-
-
+using System;
 
 namespace DejtProjekt.Controllers
 {
@@ -306,23 +304,14 @@ namespace DejtProjekt.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ShowFriends()
+        public ViewResult ShowFriends()
         {
-            var friend = from m in db.Friend
-                         select m;
-            try
-            {
 
-                int Uid = LoggInController.GetUserId();
-                friend = friend.Where(s => s.UserId.Equals(Uid));
+            var friends = db.userModel.Include(i => i.Friends.Select(c => c.UserId));
+            return View(friends.ToList());
 
-            }
 
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            return View(friend);
+
         }
 
         public ActionResult showFriend(int id)
@@ -337,7 +326,7 @@ namespace DejtProjekt.Controllers
 
             int Uid = LoggInController.GetUserId();
 
-            var getFriendConnection = db.Friend.Where(u => u.FriendId == friendId && u.UserId == Uid).Select(u => u.UserId);
+            var getFriendConnection = db.Friend.Where(u => u.Fid == friendId && u.UserId == Uid).Select(u => u.UserId);
             var materializeFriend = getFriendConnection.ToList();
             bool isEmptyFriend = !materializeFriend.Any();
 
@@ -356,7 +345,7 @@ namespace DejtProjekt.Controllers
                 var oneFriend = new Friend
                 {
                     UserId = Uid,
-                    FriendId = friendId
+                    Fid = friendId
 
                 };
 
@@ -386,3 +375,4 @@ namespace DejtProjekt.Controllers
         }
     }
 }
+
