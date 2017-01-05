@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using DejtProjekt.Models;
 using System.Security.Claims;
+using System.Net;
+using System.Data.Entity;
 
 namespace DejtProjekt.Controllers
 {
@@ -55,7 +57,7 @@ namespace DejtProjekt.Controllers
             {
                 Console.WriteLine(e);
             }
-            return View();
+            return RedirectToAction("Login");
         }
 
         //Log
@@ -147,6 +149,40 @@ namespace DejtProjekt.Controllers
             return 0;
 
         }
+
+
+        public void AddFriend(UserModel friend, int friendId) {
+             OurDbContext db = new OurDbContext();
+
+        var userToUpdate = db.userModel.Find(GetUserId());
+            if (TryUpdateModel(userToUpdate, "",
+                new string[] {  }))
+            {
+                try
+                {
+                    var oneFriend = new Friend
+                    {
+                        UserId = GetUserId(),
+                        FriendId = friendId,
+
+                    };
+                    friend.Friends = new List<Friend> { oneFriend };
+                    db.Entry(userToUpdate).State = EntityState.Modified;
+                    db.SaveChanges();
+                    
+                }
+                catch 
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Kan inte uppdatera just nu, kontakta admin om problemet kvarstår");
+                }
+            }
+
+          
+
+        }
+
+        
 
         /*public ActionResult LoggedIn()
         {

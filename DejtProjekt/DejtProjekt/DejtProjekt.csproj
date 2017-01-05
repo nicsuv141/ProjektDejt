@@ -229,14 +229,16 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoggInController.cs" />
-    <Compile Include="Controllers\UserModelsController.cs" />
+    <Compile Include="..\..\..\..\..\Desktop\s\UserModelsController.cs">
+      <Link>Controllers\UserModelsController.cs</Link>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileType.cs" />
-    <Compile Include="Models\Friends.cs" />
+    <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IPostRepository.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
