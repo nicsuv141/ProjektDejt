@@ -13,8 +13,8 @@ namespace DejtProjekt.Controllers
     [AllowAnonymous]
     public class LoggInController : Controller
     {
-        
-        
+
+
 
 
         public ActionResult Register()
@@ -70,11 +70,11 @@ namespace DejtProjekt.Controllers
 
         public ActionResult Login(UserModel user)
         {
-           try
+            try
             {
                 using (OurDbContext db = new OurDbContext())
                 {
-                  var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
+                    var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
                     if (usr != null)
                     {
                         Session["UserID"] = usr.UserID.ToString();
@@ -118,7 +118,7 @@ namespace DejtProjekt.Controllers
         public ActionResult LoggedIn()
         {
 
-            if (GetUserId() != 0){ 
+            if (GetUserId() != 0) {
 
                 int ID = GetUserId();
 
@@ -130,90 +130,81 @@ namespace DejtProjekt.Controllers
                 return RedirectToAction("Login");
             }
 
-            
+
         }
 
         public int GetUserId() {
             using (var db = new OurDbContext())
-            { 
-            Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
-            string userName = sessionName.Value;
-            if (userName != null)
             {
-                var getID = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
-                var materializeID = getID.ToList();
-                var ID = materializeID[0];
-                return ID;
+                Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
+                string userName = sessionName.Value;
+                if (userName != null)
+                {
+                    var getID = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
+                    var materializeID = getID.ToList();
+                    var ID = materializeID[0];
+                    return ID;
                 }
-        }
+            }
             return 0;
 
         }
 
 
         public void AddFriend(UserModel friend, int friendId) {
-             OurDbContext db = new OurDbContext();
+            OurDbContext db = new OurDbContext();
 
-        var userToUpdate = db.userModel.Find(GetUserId());
-            if (TryUpdateModel(userToUpdate, "",
-                new string[] {  }))
-            {
-                try
+
+           
+                var userToUpdate = db.userModel.Find(GetUserId());
+                var oneFriend = new Friend
                 {
-                    var oneFriend = new Friend
-                    {
-                        UserId = GetUserId(),
-                        FriendId = friendId,
+                    UserId = GetUserId(),
+                    FriendId = friendId,
 
-                    };
-                    friend.Friends = new List<Friend> { oneFriend };
-                    db.Entry(userToUpdate).State = EntityState.Modified;
-                    db.SaveChanges();
-                    
-                }
-                catch 
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Kan inte uppdatera just nu, kontakta admin om problemet kvarstår");
-                }
-            }
+                };
 
-          
-
-        }
-
-        
-
-        /*public ActionResult LoggedIn()
-        {
-
-            string userId = Session["UserID"].ToString();
-            if (Session["UserID"] != null)
+            if (ModelState.IsValid)
             { 
-                return RedirectToAction("Details/"+userId, "UserModels");
-                
+                userToUpdate.Friends = new List<Friend> { oneFriend };
+                db.Entry(userToUpdate).State = EntityState.Modified;
+                db.SaveChanges();
+
             }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-
-        } */
-
-        /*   [HttpGet]
-             public ActionResult Login(string returnUrl)
-             {
-                 var model = new UserModel
-                 {
-                     ReturnUrl = returnUrl
-                 };
-
-                 return View(model);
-             } */
-
-
-
+        }
 
 
     }
+
+
+    /*public ActionResult LoggedIn()
+    {
+
+        string userId = Session["UserID"].ToString();
+        if (Session["UserID"] != null)
+        { 
+            return RedirectToAction("Details/"+userId, "UserModels");
+
+        }
+        else
+        {
+            return RedirectToAction("Login");
+        }
+
+    } */
+
+    /*   [HttpGet]
+         public ActionResult Login(string returnUrl)
+         {
+             var model = new UserModel
+             {
+                 ReturnUrl = returnUrl
+             };
+
+             return View(model);
+         } */
+
+
+
 }
+
