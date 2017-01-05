@@ -149,39 +149,28 @@ namespace DejtProjekt.Controllers
             return 0;
 
         }
-        public ActionResult AddFriend(int? id)
-        {
-            OurDbContext db = new OurDbContext();
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserModel user = db.userModel.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
 
-        public void AddFriend([Bind(Include= "Friends")] UserModel user, int friendId) {
+        [HttpGet]
+        public ActionResult AddFriend(int friendId) {
             OurDbContext db = new OurDbContext();
+         
+            var userToUpdate = db.userModel.Find(GetUserId());
 
-            
-                var oneFriend = new Friend
+            var oneFriend = new Friend
                 {
                     UserId = GetUserId(),
                     FriendId = friendId,
 
                 };
 
-            if (ModelState.IsValid)
-            {
-                user.Friends = new List<Friend> { oneFriend };
-                db.Entry(user).State = EntityState.Modified;
+           
+                userToUpdate.Friends = new List<Friend> { oneFriend };
+                db.Entry(userToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
 
-            }
+            
+            return RedirectToAction("Login");
+
         }
 
 
