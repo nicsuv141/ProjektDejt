@@ -154,35 +154,24 @@ namespace DejtProjekt.Controllers
         public void AddFriend(UserModel friend, int friendId) {
              OurDbContext db = new OurDbContext();
 
-        var userToUpdate = db.userModel.Find(GetUserId());
-            if (TryUpdateModel(userToUpdate, "",
-                new string[] {  }))
-            {
-                try
-                {
-                    var oneFriend = new Friend
+       
+          
+                var userToUpdate = db.userModel.Find(GetUserId());
+                var oneFriend = new Friend
                     {
                         UserId = GetUserId(),
                         FriendId = friendId,
 
                     };
-                    friend.Friends = new List<Friend> { oneFriend };
+                    userToUpdate.Friends = new List<Friend> { oneFriend };
                     db.Entry(userToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
                     
                 }
-                catch 
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Kan inte uppdatera just nu, kontakta admin om problemet kvarstår");
-                }
-            }
-
-          
+            
 
         }
-
-        
+   
 
         /*public ActionResult LoggedIn()
         {
@@ -216,4 +205,3 @@ namespace DejtProjekt.Controllers
 
 
     }
-}

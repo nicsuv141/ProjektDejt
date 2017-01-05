@@ -133,44 +133,50 @@
 </div>
 
 
+<input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "LoggIn")?friendId=' + $('#UserID').val()" />
 
-  
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-<script>
+
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+
+      
+
+
         var uri = '/../api/OurApi';
 
-    $(document).ready(function () {
-      // Send an AJAX request
-      $.getJSON(uri)
-          .done(function (data) {
-            // On success, 'data' contains a list of posts.
-            $.each(data, function (key, item) {
-              // Add a list item for the post.
-              $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
-            });
-          });
-    });
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON(uri)
+                .done(function (data) {
+                    // On success, 'data' contains a list of posts.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the post.
+                        $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
+                    });
+                });
+        });
 
-    function formatItem(item) {
-      return item.Message;
-    }
+        function formatItem(item) {
+            return item.Message;
+        }
 
-    function find() {
-      var id = $('#MessageId').val();
-      $.getJSON(uri + '/' + id)
-          .done(function (data) {
-            $('#post').text(formatItem(data));
-          })
-          .fail(function (jqXHR, textStatus, err) {
-            $('#post').text('Error: ' + err);
-          });
-    }
+        function find() {
+            var id = $('#MessageId').val();
+            $.getJSON(uri + '/' + id)
+                .done(function (data) {
+                    $('#post').text(formatItem(data));
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#post').text('Error: ' + err);
+                });
+        }
 
 
-   
-       
+
+
         function add() {
-        
+
             var mes = $('#Message').val();
             var wall = $('#UserID').val();
             alert(wall);
@@ -185,43 +191,42 @@
                 success: function (data) { author = data; alert(data); }
             });
 
-            
+
             var post = { Message: mes, AuthorId: author, WallId: wall };
             $.ajax({
-                type : "POST",
+                type: "POST",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 data: JSON.stringify(post),
-                url:'/../api/OurApi/Posts',
-                success:function(data)
-                {
+                url: '/../api/OurApi/Posts',
+                success: function (data) {
                     alert("Booooom ")
                 },
-                error: function(result){
+                error: function (result) {
                     alert("Something went wrong");
                 }
 
 
             })
         }
-    
-   function remove() {
-       var idRemove = $('#MessageIdRemove').val();
-       var post = { MessageId: idRemove };
-       $.ajax({
-            type: 'DELETE',
-           contentType: "application/json; charset=utf-8",
-           dataType: 'json',
-           data: post,
-           url: '/../api/OurApi/' + '/' + idRemove,
-           success: function (data, textStatus, xhr) {
-               alert('The Message has been deleted');
-           },
-           error: function (xhr, textStatus, errorThrown) {
-               alert("An error occurred!!");
-           }
-       })
-   }
+
+        function remove() {
+            var idRemove = $('#MessageIdRemove').val();
+            var post = { MessageId: idRemove };
+            $.ajax({
+                type: 'DELETE',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: post,
+                url: '/../api/OurApi/' + '/' + idRemove,
+                success: function (data, textStatus, xhr) {
+                    alert('The Message has been deleted');
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert("An error occurred!!");
+                }
+            })
+        }
 
 
 
@@ -229,34 +234,34 @@
 
 
 
-</script>
+    </script>
 
-@*div id="dailydeal">   
-     @Ajax.ActionLink("Click here to see today's special!",
-    "DailyDeal",
-    null,
-    new AjaxOptions
-    { UpdateTargetId = "dailydeal",
-        InsertionMode = InsertionMode.Replace,
-        HttpMethod = "GET" },
-    new { @class = "btn btn-primary" }) 
-    </div>
+    @*div id="dailydeal">
+             @Ajax.ActionLink("Click here to see today's special!",
+            "DailyDeal",
+            null,
+            new AjaxOptions
+            { UpdateTargetId = "dailydeal",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET" },
+            new { @class = "btn btn-primary" })
+            </div>
 
-  public ActionResult DailyDeal()        
-{            
-var album = GetDailyDeal();
-            
-return PartialView("_DailyDeal", album);        
-}
-        
-// Select an album and discount it by 50%        
+          public ActionResult DailyDeal()
+        {
+        var album = GetDailyDeal();
 
-private Album GetDailyDeal()        
-{            
-var album = storeDB.Albums                
-.OrderBy(a => System.Guid.NewGuid())                
-.First();
-            
-album.Price *= 0.5m;            
-return album;
-}*@        
+        return PartialView("_DailyDeal", album);
+        }
+
+        // Select an album and discount it by 50%
+
+        private Album GetDailyDeal()
+        {
+        var album = storeDB.Albums
+        .OrderBy(a => System.Guid.NewGuid())
+        .First();
+
+        album.Price *= 0.5m;
+        return album;
+        }*@
