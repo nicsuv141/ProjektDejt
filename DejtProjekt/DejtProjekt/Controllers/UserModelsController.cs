@@ -44,52 +44,87 @@ namespace DejtProjekt.Controllers
             try
             {
 
-                var firstName = searchString.Split(' ')[0].Trim();
+                /*  var firstName = searchString.Split(' ')[0].Trim();
                 var lastName = "0";
                 int checkSubString = searchString.IndexOf(' ');
 
 
-                if (checkSubString != -1)
+                    if (checkSubString != -1)
+                    {
+                        lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
+                    }
+                    else if (checkSubString == -1)
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+
+                    }
+                    else if (checkSubString == -1)
+                    {
+
+                        users = users.Where(s => s.LastName.Contains(firstName) && s.Hidden == false);
+
+                    }
+
+                    if (!String.IsNullOrEmpty(searchString) && lastName == "0")
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+                    }
+
+                    if (!String.IsNullOrEmpty(searchString) && lastName == "0")
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+                    }
+
+                    if (!String.IsNullOrEmpty(searchString) && lastName != "0")
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden == false);
+                    }
+
+                } */
+                var search = searchString.Split(' ')[0].Trim();
+
+                var checkFirstName = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);
+
+                var checkFirstNameList = checkFirstName.ToList();
+
+                bool isEmptyFirst = !checkFirstNameList.Any();
+
+                var checkLastName = users.Where(s => s.LastName.Contains(search) && s.Hidden == false);
+
+                var checkLastNameList = checkLastName.ToList();
+
+                bool isEmptyLast = !checkLastNameList.Any();
+
+                var checkUserName = users.Where(s => s.Username.Contains(search) && s.Hidden == false);
+
+                var checkUserNameList = checkUserName.ToList();
+
+                bool isEmptyUser = !checkUserNameList.Any();
+
+                if (!isEmptyFirst)
                 {
-                    lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
+                    users = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);
                 }
-                else if (checkSubString == -1)
+
+                else if (!isEmptyLast)
+                {
+                    users = users.Where(s => s.LastName.Contains(search) && s.Hidden == false);
+                }
+                else if (!isEmptyUser)
+                {
+                    users = users.Where(s => s.Username.Contains(search) && s.Hidden == false);
+                }
+
+                else
                 {
 
-                    users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
-
+                    return new HttpStatusCodeResult(404, "Sorry we did not find anything");
                 }
-                if (!String.IsNullOrEmpty(searchString) && lastName == "0")
-                {
-
-                    users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
-                }
-
-                if (!String.IsNullOrEmpty(searchString) && lastName != "0")
-                {
-
-                    users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden == false);
-                }
-
             }
-            //var search = searchString.Split(' ')[0].Trim();
-
-            //var checkFirstName1 = users = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);
-            //var a = 1;
-            //if (checkFirstName1.ToList() != null) {
-            //    a = 0;
-            //}
-
-
-
-
-            //if (a == 0) { users = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);  }
-            //           else if (a == 1){
-            //              users = users.Where(s => s.LastName.Contains(search) && s.Hidden == false);
-            //          }
-            //      }
-
-
 
             catch (Exception e)
             {
@@ -229,7 +264,7 @@ namespace DejtProjekt.Controllers
             }
             return View(userToUpdate);
         }
-        
+
         // GET: UserModels/Delete/5
         public ActionResult Delete(int? id)
         {
