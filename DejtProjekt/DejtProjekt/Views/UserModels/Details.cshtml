@@ -106,7 +106,7 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
 </p>
 
 <div>
@@ -132,12 +132,14 @@
     <p id="removePost" />
 </div>
 
-
+<input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "LoggIn")?friendId=' + $('#UserID').val()" />
 
   
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
 <script>
-        var uri = '/../api/OurApi';
+    var uri = '/../api/OurApi';
+
+    
 
     $(document).ready(function () {
       // Send an AJAX request
@@ -167,10 +169,10 @@
     }
 
 
-   
-       
+
+
         function add() {
-        
+
             var mes = $('#Message').val();
             var wall = $('#UserID').val();
             alert(wall);
@@ -185,7 +187,7 @@
                 success: function (data) { author = data; alert(data); }
             });
 
-            
+
             var post = { Message: mes, AuthorId: author, WallId: wall };
             $.ajax({
                 type : "POST",
@@ -204,7 +206,7 @@
 
             })
         }
-    
+
    function remove() {
        var idRemove = $('#MessageIdRemove').val();
        var post = { MessageId: idRemove };
