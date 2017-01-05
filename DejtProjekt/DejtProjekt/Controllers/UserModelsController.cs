@@ -36,7 +36,7 @@ namespace DejtProjekt.Controllers
 
         //}
 
-        
+
         public ActionResult Index(string searchString)
         {
             var users = from m in db.userModel
@@ -97,13 +97,13 @@ namespace DejtProjekt.Controllers
             }
             return View(users);
         }
-    
 
-         //if ((users = users.Where(s => s.FirstName.StartsWith(firstName) && s.Hidden == false)) != null) { users = users.Where(s => s.FirstName.StartsWith(firstName) && s.Hidden == false }
-         //           else {
-         //               users = users.Where(s => s.FirstName.EndsWith(firstName) && s.Hidden == false);
-         //           }
-         //       }
+
+        //if ((users = users.Where(s => s.FirstName.StartsWith(firstName) && s.Hidden == false)) != null) { users = users.Where(s => s.FirstName.StartsWith(firstName) && s.Hidden == false }
+        //           else {
+        //               users = users.Where(s => s.FirstName.EndsWith(firstName) && s.Hidden == false);
+        //           }
+        //       }
 
 
         // GET: UserModels/Details/5
@@ -117,15 +117,15 @@ namespace DejtProjekt.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                
+
 
                 if (userModel == null)
                 {
                     return HttpNotFound();
                 }
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -152,7 +152,7 @@ namespace DejtProjekt.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -170,14 +170,14 @@ namespace DejtProjekt.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                
+
 
                 if (userModel == null)
                 {
                     return HttpNotFound();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -185,7 +185,7 @@ namespace DejtProjekt.Controllers
         }
 
         // POST: UserModels/Edit/5
-        [HttpPost,ActionName("Edit")]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id, HttpPostedFileBase upload)
         {
@@ -218,9 +218,9 @@ namespace DejtProjekt.Controllers
                         userToUpdate.Files = new List<File> { avatar };
                     }
                     db.Entry(userToUpdate).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
                 catch (RetryLimitExceededException /* dex */)
                 {
                     //Log the error (uncomment dex variable name and add a line here to write a log.
@@ -246,7 +246,7 @@ namespace DejtProjekt.Controllers
                     return HttpNotFound();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -264,14 +264,14 @@ namespace DejtProjekt.Controllers
                 db.userModel.Remove(userModel);
                 db.SaveChanges();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
             return RedirectToAction("Index");
         }
 
-       
+
 
         protected override void Dispose(bool disposing)
         {
