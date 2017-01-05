@@ -133,7 +133,7 @@ namespace DejtProjekt.Controllers
 
         }
 
-        public int GetUserId() {
+        public static int GetUserId() {
             using (var db = new OurDbContext())
             {
                 Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
@@ -150,28 +150,7 @@ namespace DejtProjekt.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult AddFriend(int friendId) {
-            OurDbContext db = new OurDbContext();
-         
-            var userToUpdate = db.userModel.Find(GetUserId());
-
-            var oneFriend = new Friend
-                {
-                    UserId = GetUserId(),
-                    FriendId = friendId,
-
-                };
-
-           
-                userToUpdate.Friends = new List<Friend> { oneFriend };
-                db.Entry(userToUpdate).State = EntityState.Modified;
-                db.SaveChanges();
-
-            
-            return RedirectToAction("Login");
-
-        }
+       
 
 
     }

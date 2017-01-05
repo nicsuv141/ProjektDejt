@@ -132,9 +132,9 @@
     <p id="removePost" />
 </div>
 
+<input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "Usermodels")?friendId=' + $('#UserID').val()" />
 
-<input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "LoggIn")?friendId=' + $('#UserID').val()" />
-
+<input type="button" value="ShowFriends" onclick="location.href='@Url.Action("ShowFriends", "Usermodels")'" />
 
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
