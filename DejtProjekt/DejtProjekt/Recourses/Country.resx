@@ -147,6 +147,9 @@
   <data name="medlem" xml:space="preserve">
     <value>medlem</value>
   </data>
+  <data name="och" xml:space="preserve">
+    <value>and</value>
+  </data>
   <data name="Om" xml:space="preserve">
     <value>Om</value>
   </data>

@@ -77,5 +77,6 @@ namespace DejtProjekt.Models
 
         public virtual ICollection<Friend> Friends { get; set; }
 
+      
     }
 }

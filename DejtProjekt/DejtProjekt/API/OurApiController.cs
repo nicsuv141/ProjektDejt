@@ -36,8 +36,15 @@ namespace DejtProjekt.API
          */
 
         // GET api/Posts    
-        public IEnumerable<Post> GetPosts()
+        public IEnumerable<Post> GetPosts(int wallId)
         {
+            OurDbContext db = new OurDbContext();
+            /*  var users = from m in db.userModel
+                          select m; */
+            var posts = from m in db.Posts
+                        select m;
+
+            var allposts = posts.Where(s => s.WallId.Equals(wallId));
             return db.Posts;
         }
         // GET api/Posts/5    
@@ -49,6 +56,8 @@ namespace DejtProjekt.API
             }
             return Ok(post);
         }
+
+
 
         // PUT api/Posts/5    
         public IHttpActionResult PutPost(int id, Post post)

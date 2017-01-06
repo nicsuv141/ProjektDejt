@@ -145,9 +145,27 @@
 
         var uri = '/../api/OurApi';
 
+        //$(document).ready(function () {
+        //    // Send an AJAX request
+        //    $.getJSON(uri)
+        //        .done(function (data) {
+        //            // On success, 'data' contains a list of posts.
+        //            $.each(data, function (key, item) {
+        //                // Add a list item for the post.
+        //                $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
+        //            });
+        //        });
+        //});
+
+        //function formatItem(item) {
+        //    return item.Message;
+        //}
+
+
         $(document).ready(function () {
             // Send an AJAX request
-            $.getJSON(uri)
+            var wall = $('#UserID').val();
+            $.getJSON(uri + '/' + wall)
                 .done(function (data) {
                     // On success, 'data' contains a list of posts.
                     $.each(data, function (key, item) {
