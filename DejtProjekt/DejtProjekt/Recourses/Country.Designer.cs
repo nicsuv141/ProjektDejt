@@ -61,11 +61,11 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boom.
+        ///   Looks up a localized string similar to Bli medlem idag!.
         /// </summary>
-        public static string Boom {
+        public static string bli_medlem_idag {
             get {
-                return ResourceManager.GetString("Boom", resourceCulture);
+                return ResourceManager.GetString("bli_medlem_idag", resourceCulture);
             }
         }
         
@@ -75,6 +75,15 @@ namespace DejtProjekt.Recourses {
         public static string Du {
             get {
                 return ResourceManager.GetString("Du", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gör som.
+        /// </summary>
+        public static string Gör_som {
+            get {
+                return ResourceManager.GetString("Gör_som", resourceCulture);
             }
         }
         
@@ -106,6 +115,24 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logga in.
+        /// </summary>
+        public static string Logga_in {
+            get {
+                return ResourceManager.GetString("Logga_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to och.
+        /// </summary>
+        public static string och {
+            get {
+                return ResourceManager.GetString("och", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Om.
         /// </summary>
         public static string Om {
@@ -115,27 +142,20 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registrera.
+        /// </summary>
+        public static string Registrera {
+            get {
+                return ResourceManager.GetString("Registrera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sprak.
         /// </summary>
         public static string Sprak {
             get {
                 return ResourceManager.GetString("Sprak", resourceCulture);
-            }
-        }
-
-        public static string Registrera
-        {
-            get
-            {
-                return ResourceManager.GetString("Registrera", resourceCulture);
-            }
-        }
-
-        public static string Logga_in
-        {
-            get
-            {
-                return ResourceManager.GetString("Logga in", resourceCulture);
             }
         }
     }

@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bli medlem idag!" xml:space="preserve">
+  <data name="bli_medlem_idag" xml:space="preserve">
     <value>Become a member today!</value>
   </data>
-  <data name="Gör som" xml:space="preserve">
+  <data name="Gör_som" xml:space="preserve">
     <value>Copy</value>
   </data>
   <data name="Hem" xml:space="preserve">
@@ -129,7 +129,7 @@
   <data name="Kontakt" xml:space="preserve">
     <value>Contact</value>
   </data>
-  <data name="Logga in" xml:space="preserve">
+  <data name="Logga_in" xml:space="preserve">
     <value>Log in</value>
   </data>
   <data name="och" xml:space="preserve">
