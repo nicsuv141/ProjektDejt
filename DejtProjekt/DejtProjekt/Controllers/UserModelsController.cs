@@ -307,10 +307,10 @@ namespace DejtProjekt.Controllers
         public ViewResult ShowFriends()
         {
 
-            var friends = db.userModel.Include(i => i.Friends.Select(c => c.UserId));
+            var friends = db.userModel.Include(i => i.Friends);
             return View(friends.ToList());
 
-
+            
 
         }
 
