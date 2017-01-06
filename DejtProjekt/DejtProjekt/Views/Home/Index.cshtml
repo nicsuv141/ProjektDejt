@@ -3,12 +3,19 @@
     ViewBag.Title = "Home Page";
 }
 <asp:ListItem Text="<%$Resources:Resources, Female %>" Value="0"></asp:ListItem>
+
+
+
  
 <div class="jumbotron">
     <h1>DejtProjekt</h1>
-    <p class="lead"><asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server"><span><%$Recourses:Country, Sprak %></span> </asp:Content> Gör som <a href="/Usermodels/Details/1">Donald Trump</a>, <a href="/Usermodels/Details/2">Vladimir Putin</a>, <a href="/Usermodels/Details/3">Stefan Löfven</a> och <a href="/Usermodels/Details/4">Angela Merkel</a> , bli medlem idag!</p>
-    <p><a href = "/loggIn/Register" class="btn btn-primary btn-lg">Bli medlem</a></p>
+    <p class="lead"><asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+        </asp:Content> @DejtProjekt.Recourses.Country.Gör_som  <a href="/Usermodels/Details/1">Donald Trump</a>, <a href="/Usermodels/Details/2">Vladimir Putin</a>, 
+    <a href="/Usermodels/Details/3">Stefan Löfven</a> och <a href="/Usermodels/Details/4">Angela Merkel</a> , @DejtProjekt.Recourses.Country.bli_medlem_idag</p>
+    <p><a href = "/loggIn/Register" class="btn btn-primary btn-lg">@DejtProjekt.Recourses.Country.bli @DejtProjekt.Recourses.Country.medlem</a></p>
 </div>
+
+
 
 <div class="row">
     <div class="col-md-4">
@@ -28,7 +35,7 @@
             <img src="~/Content/Images/Putin3.png" alt="Vladimir Putin" style="width:304px;height:228px;">
         </a>
     </div>
-   
+   </div>
  
 
 
@@ -36,4 +43,3 @@
 
  
      
- 
