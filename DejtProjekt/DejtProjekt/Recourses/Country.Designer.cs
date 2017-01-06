@@ -151,6 +151,15 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to och.
+        /// </summary>
+        public static string och {
+            get {
+                return ResourceManager.GetString("och", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Om.
         /// </summary>
         public static string Om {
