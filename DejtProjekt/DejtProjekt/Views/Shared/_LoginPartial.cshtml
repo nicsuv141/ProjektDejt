@@ -16,7 +16,12 @@
 else
 {
 <ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Registrera", "Register", "LoggIn", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li>@Html.ActionLink("Logga in", "Login", "LoggIn", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Registrera, "Register", "LoggIn")</li>
+    <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Logga_in, "Login", "LoggIn")</li>
+
+    
+
+    @*<li>@Html.ActionLink("Registrera", "Register", "LoggIn", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Logga in", "Login", "LoggIn", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
 </ul>
 }
