@@ -95,5 +95,21 @@ namespace DejtProjekt.Recourses {
                 return ResourceManager.GetString("Sprak", resourceCulture);
             }
         }
+
+        public static string Registrera
+        {
+            get
+            {
+                return ResourceManager.GetString("Registrera", resourceCulture);
+            }
+        }
+
+        public static string Logga_in
+        {
+            get
+            {
+                return ResourceManager.GetString("Logga in", resourceCulture);
+            }
+        }
     }
 }

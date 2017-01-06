@@ -8,6 +8,7 @@ using System.Globalization;
 
 namespace DejtProjekt.Controllers
 {
+    [AllowAnonymous]
     public class LanguageController : Controller
     {
         // GET: Language
