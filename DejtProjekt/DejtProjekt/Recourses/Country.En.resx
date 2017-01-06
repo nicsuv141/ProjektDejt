@@ -121,7 +121,7 @@
     <value>Become a member today!</value>
   </data>
   <data name="Gör_som" xml:space="preserve">
-    <value>Copy</value>
+    <value>Do as</value>
   </data>
   <data name="Hem" xml:space="preserve">
     <value>Home</value>
@@ -143,5 +143,11 @@
   </data>
   <data name="Sprak" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="bli" xml:space="preserve">
+    <value>Become</value>
+  </data>
+  <data name="medlem" xml:space="preserve">
+    <value>member</value>
   </data>
 </root>

@@ -61,11 +61,29 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bli medlem idag!.
+        ///   Looks up a localized string similar to bli.
+        /// </summary>
+        public static string bli {
+            get {
+                return ResourceManager.GetString("bli", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bli medlem idag!.
         /// </summary>
         public static string bli_medlem_idag {
             get {
                 return ResourceManager.GetString("bli_medlem_idag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boom.
+        /// </summary>
+        public static string Boom {
+            get {
+                return ResourceManager.GetString("Boom", resourceCulture);
             }
         }
         
@@ -115,7 +133,7 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logga in.
+        ///   Looks up a localized string similar to Logga In.
         /// </summary>
         public static string Logga_in {
             get {
@@ -124,11 +142,11 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to och.
+        ///   Looks up a localized string similar to medlem.
         /// </summary>
-        public static string och {
+        public static string medlem {
             get {
-                return ResourceManager.GetString("och", resourceCulture);
+                return ResourceManager.GetString("medlem", resourceCulture);
             }
         }
         

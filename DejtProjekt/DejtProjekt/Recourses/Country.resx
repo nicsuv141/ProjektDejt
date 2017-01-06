@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bli" xml:space="preserve">
+    <value>bli</value>
+  </data>
   <data name="bli_medlem_idag" xml:space="preserve">
-    <value>Bli medlem idag!</value>
+    <value>bli medlem idag!</value>
+  </data>
+  <data name="Boom" xml:space="preserve">
+    <value>Boom</value>
   </data>
   <data name="Du" xml:space="preserve">
     <value>Du</value>
@@ -136,10 +142,10 @@
     <value>Kontakt</value>
   </data>
   <data name="Logga_in" xml:space="preserve">
-    <value>Logga in</value>
+    <value>Logga In</value>
   </data>
-  <data name="och" xml:space="preserve">
-    <value>och</value>
+  <data name="medlem" xml:space="preserve">
+    <value>medlem</value>
   </data>
   <data name="Om" xml:space="preserve">
     <value>Om</value>
