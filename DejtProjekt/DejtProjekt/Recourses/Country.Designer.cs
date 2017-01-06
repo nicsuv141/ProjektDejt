@@ -61,11 +61,38 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Boom.
+        /// </summary>
+        public static string Boom {
+            get {
+                return ResourceManager.GetString("Boom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du.
+        /// </summary>
+        public static string Du {
+            get {
+                return ResourceManager.GetString("Du", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hem.
         /// </summary>
         public static string Hem {
             get {
                 return ResourceManager.GetString("Hem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jag.
+        /// </summary>
+        public static string Jag {
+            get {
+                return ResourceManager.GetString("Jag", resourceCulture);
             }
         }
         
