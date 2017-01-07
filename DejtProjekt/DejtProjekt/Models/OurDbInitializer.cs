@@ -118,6 +118,14 @@ namespace DejtProjekt.Models
 
             });
 
+            context.Posts.Add(new Post
+            {
+                Message = "Work",
+                AuthorId = 4,
+                WallId = 1
+
+            });
+
 
             context.Posts.Add(new Post
             {

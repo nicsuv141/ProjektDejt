@@ -114,11 +114,11 @@
     <ul id="posts" />
 </div>
 <div>
-    <h2>Search by ID</h2>
+    @*<h2>Search by ID</h2>
     <input type="text" id="MessageId" size="5" />
     <input type="button" value="Search" onclick="find();" />
     <p id="post" />
-</div>
+</div>*@
 <div>
     <h2>Add </h2>
     <input type="text" id="Message" size="50" />
@@ -146,12 +146,12 @@
         var uri = '/../api/OurApi';
 
         //$(document).ready(function () {
-        //    // Send an AJAX request
+        //     Send an AJAX request
         //    $.getJSON(uri)
         //        .done(function (data) {
-        //            // On success, 'data' contains a list of posts.
+        //             On success, 'data' contains a list of posts.
         //            $.each(data, function (key, item) {
-        //                // Add a list item for the post.
+        //                 Add a list item for the post.
         //                $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
         //            });
         //        });
@@ -179,16 +179,16 @@
             return item.Message;
         }
 
-        function find() {
-            var id = $('#MessageId').val();
-            $.getJSON(uri + '/' + id)
-                .done(function (data) {
-                    $('#post').text(formatItem(data));
-                })
-                .fail(function (jqXHR, textStatus, err) {
-                    $('#post').text('Error: ' + err);
-                });
-        }
+        //function find() {
+        //    var id = $('#UserID').val();
+        //    $.getJSON(uri + '/' + id)
+        //        .done(function (data) {
+        //            $('#post').text(formatItem(data));
+        //        })
+        //        .fail(function (jqXHR, textStatus, err) {
+        //            $('#post').text('Error: ' + err);
+        //        });
+        //}
 
 
 
