@@ -36,20 +36,21 @@ namespace DejtProjekt.API
          */
 
         // GET api/Posts    
-        public IEnumerable<Post> GetPosts(int wallId)
-        {
-            OurDbContext db = new OurDbContext();
-            /*  var users = from m in db.userModel
-                          select m; */
-            var posts = from m in db.Posts
-                        select m;
+        //public IEnumerable<Post> GetPosts(int wallId)
+        //{
+        //    OurDbContext db = new OurDbContext();
+        //    /*  var users = from m in db.userModel
+        //                  select m; */
+        //    var posts = from m in db.Posts
+        //                select m;
 
-            var allposts = posts.Where(s => s.WallId.Equals(wallId));
-            return db.Posts;
-        }
+        //    var allposts = posts.Where(s => s.WallId.Equals(wallId));
+        //    return allposts;
+        //}
         // GET api/Posts/5    
         public IHttpActionResult GetPost(int id)
-        {        Post post = db.Posts.Find(id);
+        {
+            Post post = db.Posts.Find(id);
             if (post == null)
             {
                 return NotFound();

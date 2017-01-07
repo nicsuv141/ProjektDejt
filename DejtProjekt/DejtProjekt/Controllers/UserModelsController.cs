@@ -330,37 +330,43 @@ namespace DejtProjekt.Controllers
             var materializeFriend = getFriendConnection.ToList();
             bool isEmptyFriend = !materializeFriend.Any();
 
-
-            if (Uid == friendId)
+            try
             {
-
-                return new HttpStatusCodeResult(404, "You can not send a friend request to yourself");
-            }
-
-            else if (isEmptyFriend)
-            {
-
-                var userToUpdate = db.userModel.Find(Uid);
-
-                var oneFriend = new Friend
+                if (Uid == friendId)
                 {
-                    UserId = Uid,
-                    Fid = friendId
 
-                };
+                    return View("SelfFriend");
+                }
+
+                else if (isEmptyFriend)
+                {
+
+                    var userToUpdate = db.userModel.Find(Uid);
+
+                    var oneFriend = new Friend
+                    {
+                        UserId = Uid,
+                        Fid = friendId
+
+                    };
 
 
-                userToUpdate.Friends = new List<Friend> { oneFriend };
-                db.Entry(userToUpdate).State = EntityState.Modified;
-                db.SaveChanges();
+                    userToUpdate.Friends = new List<Friend> { oneFriend };
+                    db.Entry(userToUpdate).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                return new HttpStatusCodeResult(404, "Done");
+                    return new HttpStatusCodeResult(404, "Done");
+                }
+
+                else if (!isEmptyFriend)
+                {
+
+                    return new HttpStatusCodeResult(404, "You are already friends");
+                }
             }
-
-            else if (!isEmptyFriend)
+            catch(Exception e)
             {
-
-                return new HttpStatusCodeResult(404, "You are already friends");
+                Console.WriteLine(e);
             }
             return new HttpStatusCodeResult(404, "Done");
         }
