@@ -336,6 +336,7 @@
     <Content Include="Views\UserModels\DisplayTemplates\IsLookingFor.cshtml" />
     <Content Include="Views\UserModels\ShowFriends.cshtml" />
     <Content Include="Views\Language\Index.cshtml" />
+    <Content Include="Views\UserModels\SelfFriend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
