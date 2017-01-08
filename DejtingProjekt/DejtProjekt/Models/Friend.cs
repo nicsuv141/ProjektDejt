@@ -11,6 +11,9 @@ namespace DejtProjekt.Models
         public int FriendId { get; set; }
         public int Fid { get; set; }
 
+        
+        public bool RequestAccepted { get; set; }
+
         public virtual UserModel User { get; set; }
         public virtual UserModel TheFriend { get; set; }
 

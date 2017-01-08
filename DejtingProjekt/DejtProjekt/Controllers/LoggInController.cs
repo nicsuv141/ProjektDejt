@@ -49,7 +49,7 @@ namespace DejtProjekt.Controllers
                         db.SaveChanges();
                     }
                     ModelState.Clear();
-                    ViewBag.Register = "Du har blivit registerard, var vänlig logga in";
+                   
 
                 }
             }
@@ -57,8 +57,9 @@ namespace DejtProjekt.Controllers
             {
                 Console.WriteLine(e);
             }
-           
-            return View("Login");
+
+            //ViewBag.Message = "Du har blivit registerad. Var vänlig logga in";
+            return RedirectToAction("Login");
         }
 
         //Log
