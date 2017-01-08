@@ -13,7 +13,7 @@ namespace DejtProjekt.Controllers
 {
     public class UserModelsController : Controller
     {
-        private DateContext db = new DateContext();
+        private OurDbContext db = new OurDbContext();
 
 
 
@@ -34,15 +34,57 @@ namespace DejtProjekt.Controllers
 
         //}
 
-        
+        [HttpGet]
         public ActionResult Index(string searchString)
         {
-            var users = from m in db.UserModels
+            var users = from m in db.userModel
                         select m;
             try
             {
-                var search = searchString.Split(' ')[0].Trim();
 
+                /*  var firstName = searchString.Split(' ')[0].Trim();
+                var lastName = "0";
+                int checkSubString = searchString.IndexOf(' ');
+
+
+                    if (checkSubString != -1)
+                    {
+                        lastName = searchString.Substring(searchString.IndexOf(' ') + 1).Trim();
+                    }
+                    else if (checkSubString == -1)
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+
+                    }
+                    else if (checkSubString == -1)
+                    {
+
+                        users = users.Where(s => s.LastName.Contains(firstName) && s.Hidden == false);
+
+                    }
+
+                    if (!String.IsNullOrEmpty(searchString) && lastName == "0")
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+                    }
+
+                    if (!String.IsNullOrEmpty(searchString) && lastName == "0")
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.Hidden == false);
+                    }
+
+                    if (!String.IsNullOrEmpty(searchString) && lastName != "0")
+                    {
+
+                        users = users.Where(s => s.FirstName.Contains(firstName) && s.LastName.Contains(lastName) && s.Hidden == false);
+                    }
+
+                } */
+                var search = searchString.Split(' ')[0].Trim();
+                
                 var checkFirstName = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);
 
                 var checkFirstNameList = checkFirstName.ToList();
@@ -61,44 +103,32 @@ namespace DejtProjekt.Controllers
 
                 bool isEmptyUser = !checkUserNameList.Any();
 
-                if (search == "")
-                {
-                    
-                    return new HttpStatusCodeResult(404, "The search field can not be empty");
-                }
-
-                else if (!isEmptyFirst)
+                if (!isEmptyFirst)
                 {
                     users = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);
-                    return View(users);
                 }
 
                 else if (!isEmptyLast)
                 {
                     users = users.Where(s => s.LastName.Contains(search) && s.Hidden == false);
-                    return View(users);
                 }
                 else if (!isEmptyUser)
                 {
                     users = users.Where(s => s.Username.Contains(search) && s.Hidden == false);
-                    return View(users);
                 }
 
                 else
                 {
 
-                    return new HttpStatusCodeResult(404, "Sorry we could not find anything");
+                    return new HttpStatusCodeResult(404, "Sorry we did not find anything");
                 }
-
             }
 
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-
-            return new HttpStatusCodeResult(404, "Something didn't go as expected, try again");
-
+            return View(users);
         }
 
 
@@ -113,7 +143,7 @@ namespace DejtProjekt.Controllers
         //[@Authorize]
         public ActionResult Details(int? id)
         {
-            UserModel userModel = db.UserModels.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
+            UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
             try
             {
                 if (id == null)
@@ -150,7 +180,7 @@ namespace DejtProjekt.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.UserModels.Add(userModel);
+                    db.userModel.Add(userModel);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -166,7 +196,7 @@ namespace DejtProjekt.Controllers
         // GET: UserModels/Edit/5
         public ActionResult Edit(int? id)
         {
-            UserModel userModel = db.UserModels.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
+            UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
             try
             {
                 if (id == null)
@@ -196,7 +226,7 @@ namespace DejtProjekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var userToUpdate = db.UserModels.Find(id);
+            var userToUpdate = db.userModel.Find(id);
             if (TryUpdateModel(userToUpdate, "",
                 new string[] { "Username", "FirstName", "LastName", "Email", "Gender", "Phone", "Country", "LookingFor", "Hidden", "PersonalNumber" }))
             {
@@ -236,7 +266,7 @@ namespace DejtProjekt.Controllers
         // GET: UserModels/Delete/5
         public ActionResult Delete(int? id)
         {
-            UserModel userModel = db.UserModels.Find(id);
+            UserModel userModel = db.userModel.Find(id);
             try
             {
                 if (id == null)
@@ -261,10 +291,10 @@ namespace DejtProjekt.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserModel userModel = db.UserModels.Find(id);
+            UserModel userModel = db.userModel.Find(id);
             try
             {
-                db.UserModels.Remove(userModel);
+                db.userModel.Remove(userModel);
                 db.SaveChanges();
             }
             catch (Exception e)
@@ -277,7 +307,7 @@ namespace DejtProjekt.Controllers
         public ViewResult ShowFriends()
         {
 
-            var friends = db.UserModels.Include(i => i.Friend);
+            var friends = db.userModel.Include(i => i.Friends);
             return View(friends.ToList());
 
             
@@ -290,13 +320,13 @@ namespace DejtProjekt.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddFriend(int friendId)
+        public string AddFriend(int friendId)
         {
-            DateContext db = new DateContext();
+            OurDbContext db = new OurDbContext();
 
             int Uid = LoggInController.GetUserId();
 
-            var getFriendConnection = db.Friends.Where(u => u.FriendId == friendId && u.UserId == Uid).Select(u => u.UserId);
+            var getFriendConnection = db.Friend.Where(u => u.Fid == friendId && u.UserId == Uid).Select(u => u.UserId);
             var materializeFriend = getFriendConnection.ToList();
             bool isEmptyFriend = !materializeFriend.Any();
 
@@ -304,41 +334,48 @@ namespace DejtProjekt.Controllers
             {
                 if (Uid == friendId)
                 {
-
-                    return View("SelfFriend");
+                    //return new HttpStatusCodeResult(@ViewBag.Message = "Du kan inte vara vän med sig själv");
+                    //return (ViewBag.Message = "Du kan inte vara vän med dig själv");
+                    //@ViewBag.Message = "Du kan inte vara vän med dig själv.";
+                    return ViewBag.Friend = "Du kan inte vara vän med dig själv";
                 }
 
                 else if (isEmptyFriend)
                 {
 
-                    var userToUpdate = db.UserModels.Find(Uid);
+                    var userToUpdate = db.userModel.Find(Uid);
 
                     var oneFriend = new Friend
                     {
                         UserId = Uid,
-                        FId = friendId
+                        Fid = friendId
 
                     };
 
 
-                    userToUpdate.Friend = new List<Friend> { oneFriend };
+                    userToUpdate.Friends = new List<Friend> { oneFriend };
                     db.Entry(userToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return View("");
+                    return ViewBag.Friend = "Ni är nu vänner";
+                    //return new HttpStatusCodeResult(404, "Done");
                 }
 
                 else if (!isEmptyFriend)
                 {
-
-                    return new HttpStatusCodeResult(404, "You are already friends");
+                    return ViewBag.Friend = "Ni är redan vänner";
+                    //return new HttpStatusCodeResult(404, "You are already friends");
                 }
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
             }
-            return new HttpStatusCodeResult(404, "Something didn't go as expected, try again");
+            return ViewBag.Friend = "Hejhej";
+            //return View("~/Home");
+            //return Redirect("~/Home");
+            //return new HttpStatusCodeResult(404, "Hejsan");
+            //return ViewBag.Message = "Hejsan hoppsan";
         }
 
         protected override void Dispose(bool disposing)

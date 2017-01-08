@@ -224,8 +224,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Content\WebApiConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -234,11 +235,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701081058336_InitialCreate.cs" />
-    <Compile Include="Migrations\201701081058336_InitialCreate.Designer.cs">
-      <DependentUpon>201701081058336_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileType.cs" />
@@ -246,7 +242,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IPostRepository.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\DateContext.cs" />
+    <Compile Include="Models\OurDbContext.cs" />
+    <Compile Include="Models\OurDbInitializer.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostRepository.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -264,6 +261,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DejtProjekt.Models.OurDbContext.mdf" />
+    <Content Include="App_Data\DejtProjekt.Models.OurDbContext_log.ldf">
+      <DependentUpon>DejtProjekt.Models.OurDbContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\Angela1.jpg" />
@@ -337,6 +338,7 @@
     <Content Include="Views\UserModels\ShowFriends.cshtml" />
     <Content Include="Views\Language\Index.cshtml" />
     <Content Include="Views\UserModels\SelfFriend.cshtml" />
+    <Content Include="Views\Shared\Error404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
@@ -347,9 +349,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701081058336_InitialCreate.resx">
-      <DependentUpon>201701081058336_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Recourses\Country.En.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Country.En.Designer.cs</LastGenOutput>
@@ -360,7 +359,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
