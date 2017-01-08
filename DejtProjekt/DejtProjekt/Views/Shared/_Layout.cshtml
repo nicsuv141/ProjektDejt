@@ -24,8 +24,15 @@
                     <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Hem, "Index", "Home")</li>
                     <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Om, "About", "Home")</li>
                     <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Kontakt, "Contact", "Home")</li>
-                    <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Sprak, "Index", "Language")</li>
+                    @*<li>@Html.ActionLink(DejtProjekt.Recourses.Country.Sprak, "Index", "Language")</li>*@
                 </ul>
+                <a href="/Language/Change?LanguageAbbrevation=Sv">
+                    <img src="~/Content/Images/svenska.png" alt="Svenska" style="width:25px;height:25px;" />
+                </a>
+
+                <a href="/Language/Change?LanguageAbbrevation=En">
+                    <img src="~/Content/Images/engelska.png" alt="Engelska" style="width:25px;height:25px;" />
+                </a>
                 @using (Html.BeginForm("Index", "UserModels", FormMethod.Get))
                 {
                     <p class="text-danger">
@@ -35,13 +42,13 @@
                     <input type="submit" class="btn btn-default" value="Sök" />
 
                     @Html.Partial("_LoginPartial")
-                    <a href="/Language/Change?LanguageAbbrevation=Sv">
+                    @*<a href="/Language/Change?LanguageAbbrevation=Sv">
                         <img src="~/Content/Images/svenska.png" alt="Svenska" style="width:25px;height:25px;" />
                         </a>
                         
                         <a href="/Language/Change?LanguageAbbrevation=En">
                             <img src="~/Content/Images/engelska.png" alt="Engelska" style="width:25px;height:25px;" />
-                        </a>
+                        </a>*@
                 }
 </div>
         </div>
