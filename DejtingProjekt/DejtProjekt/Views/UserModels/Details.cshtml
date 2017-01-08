@@ -19,7 +19,7 @@
                 <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" />
             </dd>
         }
-      
+
         <dt>
             @Html.DisplayNameFor(model => model.Username)
         </dt>
@@ -72,7 +72,7 @@
             @Html.DisplayNameFor(model => model.Gender)
         </dt>
 
-        
+
         <dd>
             @Html.DisplayFor(model => model.Gender)
         </dd>
@@ -115,33 +115,33 @@
 </div>
 <div>
     @*<h2>Search by ID</h2>
-    <input type="text" id="MessageId" size="5" />
-    <input type="button" value="Search" onclick="find();" />
-    <p id="post" />
-</div>*@
-<div>
-    <h2>Add </h2>
-    <input type="text" id="Message" size="50" />
-    <input type="button" value="Post" onclick="add();" />
-</div>
+            <input type="text" id="MessageId" size="5" />
+            <input type="button" value="Search" onclick="find();" />
+            <p id="post" />
+        </div>*@
+    <div>
+        <h2>Add </h2>
+        <input type="text" id="Message" size="50" />
+        <input type="button" value="Post" onclick="add();" />
+    </div>
 
-<div>
-    <h2>Remove by ID</h2>
-    <input type="text" id="MessageIdRemove" size="5" />
-    <input type="button" value="Remove" onclick="remove();" />
-    <p id="removePost" />
-</div>
+    <div>
+        <h2>Remove by ID</h2>
+        <input type="text" id="MessageIdRemove" size="5" />
+        <input type="button" value="Remove" onclick="remove();" />
+        <p id="removePost" />
+    </div>
 
- 
-<input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "Usermodels")?friendId=' + $('#UserID').val()" />
-@ViewBag.Friend
-<input type="button" value="ShowFriends" onclick="location.href='@Url.Action("ShowFriends", "Usermodels")'" />
+
+    <input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "Usermodels")?friendId=' + $('#UserID').val()" />
+    @ViewBag.Friend
+    <input type="button" value="ShowFriends" onclick="location.href='@Url.Action("ShowFriends", "Usermodels")'" />
 
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
 
-      
+
 
 
         var uri = '/../api/OurApi';
@@ -203,7 +203,7 @@
             $.ajax({
                 type: "POST",
 
-                url: "/../LoggIn/GetUserId",
+                url: "/../LoggIn/GetUserId2",
                 contentType: "application/json; charset=utf-8",
                 dataType: "text",
                 async: false,

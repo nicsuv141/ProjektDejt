@@ -150,7 +150,25 @@ namespace DejtProjekt.Controllers
 
         }
 
-       
+        public int GetUserId2()
+        {
+            using (var db = new OurDbContext())
+            {
+                Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
+                string userName = sessionName.Value;
+                if (userName != null)
+                {
+                    var getID = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
+                    var materializeID = getID.ToList();
+                    var ID = materializeID[0];
+                    return ID;
+                }
+            }
+            return 0;
+
+        }
+
+
 
 
     }
