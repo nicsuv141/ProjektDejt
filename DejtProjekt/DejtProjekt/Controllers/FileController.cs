@@ -9,7 +9,7 @@ namespace DejtProjekt.Controllers
 {
     public class FileController : Controller
     {
-        private DateContext db = new DateContext();
+        private OurDbContext db = new OurDbContext();
 
         //
         // GET: /File/
