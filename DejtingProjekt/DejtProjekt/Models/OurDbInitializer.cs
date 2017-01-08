@@ -24,6 +24,7 @@ namespace DejtProjekt.Models
                 Hidden = false,
                 LookingFor = 1,
                 PersonalNumber = "197004051321",
+                Friends = new List<Friend>()
 
 
             });
@@ -42,6 +43,7 @@ namespace DejtProjekt.Models
                 Hidden = false,
                 LookingFor = 3,
                 PersonalNumber = "197004051321",
+                Friends = new List<Friend>()
             });
 
             context.userModel.Add(new UserModel
@@ -58,6 +60,7 @@ namespace DejtProjekt.Models
                 Hidden = false,
                 LookingFor = 1,
                 PersonalNumber = "197004051321",
+                Friends = new List<Friend>()
             });
 
             context.userModel.Add(new UserModel
@@ -74,6 +77,7 @@ namespace DejtProjekt.Models
                 Hidden = false,
                 LookingFor = 2,
                 PersonalNumber = "197004051321",
+                Friends = new List<Friend>()
 
             });
 
@@ -91,6 +95,7 @@ namespace DejtProjekt.Models
                 Hidden = false,
                 LookingFor = 3,
                 PersonalNumber = "199404051321",
+                Friends = new List<Friend>()
 
             });
 
@@ -99,6 +104,7 @@ namespace DejtProjekt.Models
                 Message = "Boom",
             AuthorId = 1,
             WallId = 2
+            
             
             });
 
@@ -133,6 +139,8 @@ namespace DejtProjekt.Models
                 AuthorId = 1,
                 WallId = 2
             });
+
+            
 
             //context.Posts.Add(new Post
             //{

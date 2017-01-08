@@ -307,8 +307,11 @@ namespace DejtProjekt.Controllers
         public ViewResult ShowFriends()
         {
 
+
+
             var joinQuery = from user in db.userModel
                             join friend in db.Friend on user.UserID equals friend.Fid
+                            where friend.RequestAccepted == true
                             select new { user.FirstName,user.LastName,user.Username, user.UserID};
 
             var users = new List<UserModel>();
@@ -360,12 +363,13 @@ namespace DejtProjekt.Controllers
                     var oneFriend = new Friend
                     {
                         UserId = Uid,
-                        Fid = friendId
-
+                        Fid = friendId,
+                        RequestAccepted = false
+                        
                     };
 
 
-                    userToUpdate.Friends = new List<Friend> { oneFriend };
+                    userToUpdate.Friends.Add(oneFriend);
                     db.Entry(userToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
