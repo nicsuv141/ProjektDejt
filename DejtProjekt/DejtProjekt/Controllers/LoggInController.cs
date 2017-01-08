@@ -43,9 +43,9 @@ namespace DejtProjekt.Controllers
                         }
                         account.Files = new List<File> { avatar };
                     }
-                    using (OurDbContext db = new OurDbContext())
+                    using (DateContext db = new DateContext())
                     {
-                        db.userModel.Add(account);
+                        db.UserModels.Add(account);
                         db.SaveChanges();
                     }
                     ModelState.Clear();
@@ -72,14 +72,14 @@ namespace DejtProjekt.Controllers
         {
             try
             {
-                using (OurDbContext db = new OurDbContext())
+                using (DateContext db = new DateContext())
                 {
-                    var usr = db.userModel.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
+                    var usr = db.UserModels.Where(u => u.Username == user.Username && u.NewPassword == user.NewPassword).FirstOrDefault();
                     if (usr != null)
                     {
                         Session["UserID"] = usr.UserID.ToString();
                         Session["Username"] = usr.Username.ToString();
-                        var getUserName = db.userModel.Where(u => u.Username == user.Username).Select(u => u.Username);
+                        var getUserName = db.UserModels.Where(u => u.Username == user.Username).Select(u => u.Username);
                         var materializeUsername = getUserName.ToList();
                         var username = materializeUsername[0];
                         var identity = new ClaimsIdentity(new[] {
@@ -134,13 +134,13 @@ namespace DejtProjekt.Controllers
         }
 
         public static int GetUserId() {
-            using (var db = new OurDbContext())
+            using (var db = new DateContext())
             {
                 Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
                 string userName = sessionName.Value;
                 if (userName != null)
                 {
-                    var getID = db.userModel.Where(u => u.Username == userName).Select(u => u.UserID);
+                    var getID = db.UserModels.Where(u => u.Username == userName).Select(u => u.UserID);
                     var materializeID = getID.ToList();
                     var ID = materializeID[0];
                     return ID;

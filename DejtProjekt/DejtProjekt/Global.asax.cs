@@ -17,7 +17,7 @@ namespace DejtProjekt
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new OurDbInitializer());
+            //Database.SetInitializer(new Configuration());
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
@@ -42,11 +42,6 @@ namespace DejtProjekt
             }
         }
 
-        protected void Application_Error(Object sender, EventArgs e)
-        {
-            Session["CurrentError"] = "Global: " +
-                Server.GetLastError().Message;
-            Server.Transfer("lasterr.aspx");
-        }
+        
     }
 }

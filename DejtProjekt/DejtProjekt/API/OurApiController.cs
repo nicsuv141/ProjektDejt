@@ -17,7 +17,7 @@ namespace DejtProjekt.API
     //[Authorize] 
     public class OurApiController : ApiController
     {
-        private OurDbContext db = new OurDbContext();
+        private DateContext db = new DateContext();
 
         /* public IEnumerable<Post> GetAllPosts()
          {
@@ -40,7 +40,7 @@ namespace DejtProjekt.API
         {
             var posts = from m in db.Posts
                        select m;
-            var users = from m in db.userModel
+            var users = from m in db.UserModels
                         select m;
             posts = posts.Where(s => s.WallId.Equals(id));
             //users = users.Where(s => s.UserID.Equals(posts.Select(a => a.AuthorId)));
