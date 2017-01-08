@@ -14,7 +14,7 @@ namespace DejtProjekt.Models
         
 
         [Key]
-        public int UserID { get; set; }  // Primary key
+        public virtual int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
         [Display(Name = "Användarnamn:")]
         public string Username { get; set; }
@@ -73,10 +73,10 @@ namespace DejtProjekt.Models
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }
 
-        public virtual ICollection<File> Files { get; set; }
+        public virtual ICollection<File> Files { get; set; }        
 
-        public virtual ICollection<Friend> Friends { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
 
-      
+        public virtual ICollection<Friend> Friend { get; set; }
     }
 }
