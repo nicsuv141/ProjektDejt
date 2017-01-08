@@ -1,0 +1,286 @@
+﻿@model DejtProjekt.Models.UserModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.Files.Any(f => f.FileType == FileType.Avatar))
+        {
+            <dt>
+                Avatar
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" />
+            </dd>
+        }
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hidden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hidden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LookingFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LookingFor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        @Html.HiddenFor(model => model.UserID)
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    <h2>All Posts</h2>
+    <ul id="posts" />
+</div>
+<div>
+    @*<h2>Search by ID</h2>
+    <input type="text" id="MessageId" size="5" />
+    <input type="button" value="Search" onclick="find();" />
+    <p id="post" />
+</div>*@
+<div>
+    <h2>Add </h2>
+    <input type="text" id="Message" size="50" />
+    <input type="button" value="Post" onclick="add();" />
+</div>
+
+<div>
+    <h2>Remove by ID</h2>
+    <input type="text" id="MessageIdRemove" size="5" />
+    <input type="button" value="Remove" onclick="remove();" />
+    <p id="removePost" />
+</div>
+
+ 
+<input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "Usermodels")?friendId=' + $('#UserID').val()" />
+@ViewBag.Friend
+<input type="button" value="ShowFriends" onclick="location.href='@Url.Action("ShowFriends", "Usermodels")'" />
+
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+
+      
+
+
+        var uri = '/../api/OurApi';
+
+        //$(document).ready(function () {
+        //     Send an AJAX request
+        //    $.getJSON(uri)
+        //        .done(function (data) {
+        //             On success, 'data' contains a list of posts.
+        //            $.each(data, function (key, item) {
+        //                 Add a list item for the post.
+        //                $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
+        //            });
+        //        });
+        //});
+
+        //function formatItem(item) {
+        //    return item.Message;
+        //}
+
+
+        $(document).ready(function () {
+            // Send an AJAX request
+            var wall = $('#UserID').val();
+            $.getJSON(uri + '/' + wall)
+                .done(function (data) {
+                    // On success, 'data' contains a list of posts.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the post.
+                        $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
+                    });
+                });
+        });
+
+        function formatItem(item) {
+            return item.Message;
+        }
+
+        //function find() {
+        //    var id = $('#UserID').val();
+        //    $.getJSON(uri + '/' + id)
+        //        .done(function (data) {
+        //            $('#post').text(formatItem(data));
+        //        })
+        //        .fail(function (jqXHR, textStatus, err) {
+        //            $('#post').text('Error: ' + err);
+        //        });
+        //}
+
+
+
+
+        function add() {
+
+            var mes = $('#Message').val();
+            var wall = $('#UserID').val();
+            alert(wall);
+            var author;
+            $.ajax({
+                type: "POST",
+
+                url: "/../LoggIn/GetUserId",
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                async: false,
+                success: function (data) { author = data; alert(data); }
+            });
+
+
+            var post = { Message: mes, AuthorId: author, WallId: wall };
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: JSON.stringify(post),
+                url: '/../api/OurApi/Posts',
+                success: function (data) {
+                    alert("Booooom ")
+                },
+                error: function (result) {
+                    alert("Something went wrong");
+                }
+
+
+            })
+        }
+
+        function remove() {
+            var idRemove = $('#MessageIdRemove').val();
+            var post = { MessageId: idRemove };
+            $.ajax({
+                type: 'DELETE',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: post,
+                url: '/../api/OurApi/' + '/' + idRemove,
+                success: function (data, textStatus, xhr) {
+                    alert('The Message has been deleted');
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert("An error occurred!!");
+                }
+            })
+        }
+
+
+
+
+
+
+
+    </script>
+
+    @*div id="dailydeal">
+             @Ajax.ActionLink("Click here to see today's special!",
+            "DailyDeal",
+            null,
+            new AjaxOptions
+            { UpdateTargetId = "dailydeal",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET" },
+            new { @class = "btn btn-primary" })
+            </div>
+
+          public ActionResult DailyDeal()
+        {
+        var album = GetDailyDeal();
+
+        return PartialView("_DailyDeal", album);
+        }
+
+        // Select an album and discount it by 50%
+
+        private Album GetDailyDeal()
+        {
+        var album = storeDB.Albums
+        .OrderBy(a => System.Guid.NewGuid())
+        .First();
+
+        album.Price *= 0.5m;
+        return album;
+        }*@
