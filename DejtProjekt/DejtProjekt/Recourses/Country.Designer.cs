@@ -151,7 +151,7 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to and.
+        ///   Looks up a localized string similar to och.
         /// </summary>
         public static string och {
             get {
@@ -178,7 +178,7 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sprak.
+        ///   Looks up a localized string similar to Språk.
         /// </summary>
         public static string Sprak {
             get {
