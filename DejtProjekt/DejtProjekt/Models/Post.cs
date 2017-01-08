@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DejtProjekt.Models
 {
@@ -12,14 +11,13 @@ namespace DejtProjekt.Models
         [Key]
         public int MessageId { get; set; }
         public string Message { get; set; }
-        [ForeignKey("Author")]
-        public virtual int AuthorId { get; set; }
-        [ForeignKey("Wall")]
-        public virtual int WallId { get; set; }
+        public int AuthorId { get; set; }
+        public int WallId { get; set; }
 
         public virtual UserModel Author { get; set; }
 
         public virtual UserModel Wall { get; set; }
-      
+
+
     }
 }

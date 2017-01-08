@@ -307,7 +307,7 @@ namespace DejtProjekt.Controllers
         public ViewResult ShowFriends()
         {
 
-            var friends = db.userModel.Include(i => i.Friend);
+            var friends = db.userModel.Include(i => i.Friends);
             return View(friends.ToList());
 
             
@@ -326,7 +326,7 @@ namespace DejtProjekt.Controllers
 
             int Uid = LoggInController.GetUserId();
 
-            var getFriendConnection = db.Friend.Where(u => u.FId == friendId && u.UserId == Uid).Select(u => u.UserId);
+            var getFriendConnection = db.Friend.Where(u => u.Fid == friendId && u.UserId == Uid).Select(u => u.UserId);
             var materializeFriend = getFriendConnection.ToList();
             bool isEmptyFriend = !materializeFriend.Any();
 
@@ -348,12 +348,12 @@ namespace DejtProjekt.Controllers
                     var oneFriend = new Friend
                     {
                         UserId = Uid,
-                        FId = friendId
+                        Fid = friendId
 
                     };
 
 
-                    userToUpdate.Friend = new List<Friend> { oneFriend };
+                    userToUpdate.Friends = new List<Friend> { oneFriend };
                     db.Entry(userToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 

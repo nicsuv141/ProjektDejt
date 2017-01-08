@@ -38,25 +38,45 @@ namespace DejtProjekt.API
         // GET api/Posts/5    
         public IHttpActionResult GetPost(int id)
         {
-            var posts = from m in db.Posts
-                       select m;
-            var users = from m in db.userModel
-                        select m;
-            posts = posts.Where(s => s.WallId.Equals(id));
+            //var posts = from m in db.Posts
+            //           select m;
+            //var users = from m in db.userModel
+            //            select m;
+            //posts = posts.Where(s => s.WallId.Equals(id));
             //users = users.Where(s => s.UserID.Equals(posts.Select(a => a.AuthorId)));
             //var checkPostsList = posts.ToList();
 
-            
+
             //var authorid = from AuthorID in checkPostsList
             //                 select new { AuthorID };
 
             //var checkusersList = users.ToList();
+            var joinQuery = from user in db.userModel
+                            join post in db.Posts on user.UserID equals post.AuthorId
+                            where post.WallId == id
+                         select new { post.Message, user.Username };
 
-            if (posts == null)
-            {
-                return NotFound();
-            }
-            return Ok(posts);
+
+
+
+            //var posts = new List<Post>();
+            //foreach (var u in joinQuery)
+            //{
+            //    posts.Add(new Post()
+            //    {
+            //        Message = u.Message,
+            //        Username = u.Username,
+            //        UserID = u.UserID,
+            //        Username = u.Username
+            //    });
+
+
+
+            //    if (posts == null)
+            //{
+            //    return NotFound();
+            //}
+            return Ok(joinQuery);
         }
 
 

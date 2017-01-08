@@ -17,7 +17,7 @@ namespace DejtProjekt
     {
         protected void Application_Start()
         {
-            //Database.SetInitializer(new Configuration());
+            Database.SetInitializer(new OurDbInitializer());
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();

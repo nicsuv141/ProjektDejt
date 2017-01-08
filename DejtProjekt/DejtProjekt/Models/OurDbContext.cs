@@ -10,7 +10,7 @@ namespace DejtProjekt.Models
     {
         public DbSet<UserModel> userModel { get; set; }
         public DbSet<File> Files { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; } 
         public DbSet<Friend> Friend { get; set; }
     }
 }
