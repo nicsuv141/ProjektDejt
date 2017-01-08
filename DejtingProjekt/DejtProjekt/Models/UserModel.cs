@@ -16,6 +16,7 @@ namespace DejtProjekt.Models
         [Key]
         public int UserID { get; set; }  // Primary key
         [Required(ErrorMessage = "Skriv in ett användarnamn.")]
+       
         [Display(Name = "Användarnamn:")]
         public string Username { get; set; }
 

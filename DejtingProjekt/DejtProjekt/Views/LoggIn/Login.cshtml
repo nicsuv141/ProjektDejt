@@ -5,12 +5,15 @@
 }
 
 <h2>Login</h2>
-
+@ViewBag.Register
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
+
+        @ViewBag.Register;
+        
     <div class="form-horizontal">
         <h4>UserModel</h4>
         <hr />
