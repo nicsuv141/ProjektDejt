@@ -28,11 +28,22 @@
                 </ul>
                 @using (Html.BeginForm("Index", "UserModels", FormMethod.Get))
                 {
-                <input type="text" style="margin-top: 10px;" class="input-sm" name="searchString" />
-                <input type="submit" class="btn btn-default" value="Sök" />
-                @Html.Partial("_LoginPartial")
+                    <p class="text-danger">
+                        @ViewBag.Search
+                    </p>
+                    <input type="text" style="margin-top: 10px;" class="input-sm" name="searchString" />
+                    <input type="submit" class="btn btn-default" value="Sök" />
+
+                    @Html.Partial("_LoginPartial")
+                    <a href="/Language/Change?LanguageAbbrevation=Sv">
+                        <img src="~/Content/Images/svenska.png" alt="Svenska" style="width:25px;height:25px;" />
+                        </a>
+                        
+                        <a href="/Language/Change?LanguageAbbrevation=En">
+                            <img src="~/Content/Images/engelska.png" alt="Engelska" style="width:25px;height:25px;" />
+                        </a>
                 }
-            </div>
+</div>
         </div>
     </div>
     <div class="container body-content">
@@ -50,3 +61,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

@@ -1,8 +1,15 @@
-﻿
+﻿@model DejtProjekt.Models.UserModel
 @{
-    ViewBag.Title = "Friend";
+    ViewBag.Title = "SelfFriend";
 }
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-<script>
-alert("Du kan inte vara vän med dig själv!");
+
+
+
+<script type = "text/javascript">
+
+     
+       alert("Du kan inte vara vän med dig själv");
+   
+
+    @*@{ Response.Redirect("~/Usermodels/Details/1", false);}*@
 </script>

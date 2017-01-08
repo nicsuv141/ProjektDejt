@@ -132,8 +132,9 @@
     <p id="removePost" />
 </div>
 
+ 
 <input type="button" value="Add" onclick="location.href='@Url.Action("AddFriend", "Usermodels")?friendId=' + $('#UserID').val()" />
-
+@ViewBag.Friend
 <input type="button" value="ShowFriends" onclick="location.href='@Url.Action("ShowFriends", "Usermodels")'" />
 
 

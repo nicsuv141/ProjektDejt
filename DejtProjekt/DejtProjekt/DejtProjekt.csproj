@@ -226,6 +226,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -337,6 +338,7 @@
     <Content Include="Views\UserModels\ShowFriends.cshtml" />
     <Content Include="Views\Language\Index.cshtml" />
     <Content Include="Views\UserModels\SelfFriend.cshtml" />
+    <Content Include="Views\Shared\Error404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
@@ -355,6 +357,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Country.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -34,7 +34,7 @@ namespace DejtProjekt.Controllers
 
         //}
 
-
+        [HttpGet]
         public ActionResult Index(string searchString)
         {
             var users = from m in db.userModel
@@ -84,7 +84,7 @@ namespace DejtProjekt.Controllers
 
                 } */
                 var search = searchString.Split(' ')[0].Trim();
-
+                
                 var checkFirstName = users.Where(s => s.FirstName.Contains(search) && s.Hidden == false);
 
                 var checkFirstNameList = checkFirstName.ToList();
@@ -320,7 +320,7 @@ namespace DejtProjekt.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddFriend(int friendId)
+        public string AddFriend(int friendId)
         {
             OurDbContext db = new OurDbContext();
 
@@ -334,8 +334,10 @@ namespace DejtProjekt.Controllers
             {
                 if (Uid == friendId)
                 {
-
-                    return View("SelfFriend");
+                    //return new HttpStatusCodeResult(@ViewBag.Message = "Du kan inte vara vän med sig själv");
+                    //return (ViewBag.Message = "Du kan inte vara vän med dig själv");
+                    //@ViewBag.Message = "Du kan inte vara vän med dig själv.";
+                    return ViewBag.Friend = "Du kan inte vara vän med dig själv";
                 }
 
                 else if (isEmptyFriend)
@@ -355,20 +357,25 @@ namespace DejtProjekt.Controllers
                     db.Entry(userToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return new HttpStatusCodeResult(404, "Done");
+                    return ViewBag.Friend = "Ni är nu vänner";
+                    //return new HttpStatusCodeResult(404, "Done");
                 }
 
                 else if (!isEmptyFriend)
                 {
-
-                    return new HttpStatusCodeResult(404, "You are already friends");
+                    return ViewBag.Friend = "Ni är redan vänner";
+                    //return new HttpStatusCodeResult(404, "You are already friends");
                 }
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
             }
-            return new HttpStatusCodeResult(404, "Done");
+            return ViewBag.Friend = "Hejhej";
+            //return View("~/Home");
+            //return Redirect("~/Home");
+            //return new HttpStatusCodeResult(404, "Hejsan");
+            //return ViewBag.Message = "Hejsan hoppsan";
         }
 
         protected override void Dispose(bool disposing)

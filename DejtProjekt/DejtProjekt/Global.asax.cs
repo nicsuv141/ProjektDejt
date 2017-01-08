@@ -42,11 +42,6 @@ namespace DejtProjekt
             }
         }
 
-        protected void Application_Error(Object sender, EventArgs e)
-        {
-            Session["CurrentError"] = "Global: " +
-                Server.GetLastError().Message;
-            Server.Transfer("lasterr.aspx");
-        }
+        
     }
 }
