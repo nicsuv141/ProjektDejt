@@ -353,20 +353,44 @@ namespace DejtProjekt.Controllers
             return View(joinQuery);
         }
 
-        public ActionResult AcceptFriendRequest(int Fid)
+        public ActionResult AcceptFriendRequest(int id)
         {
 
-            var joinQuery =
+            
+            Friend friend = db.Friend.Single(f => f.Fid == id);
 
+            friend.RequestAccepted = true;
+
+            try
+            {
+
+                db.Entry(friend).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             return RedirectToAction("showFriendRequest");
 
         }
 
-        public ActionResult DeniedFriendRequest(int Fid)
+        public ActionResult DeniedFriendRequest(int id)
         {
 
-            var joinQuery =
+            Friend friend = db.Friend.Single(f => f.Fid == id);
+            try
+            {
+                db.Friend.Remove(friend);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+
             return RedirectToAction("showFriendRequest");
         }
 
