@@ -148,7 +148,7 @@
     <value>medlem</value>
   </data>
   <data name="och" xml:space="preserve">
-    <value>and</value>
+    <value>och</value>
   </data>
   <data name="Om" xml:space="preserve">
     <value>Om</value>
@@ -157,9 +157,6 @@
     <value>Registrera</value>
   </data>
   <data name="Sprak" xml:space="preserve">
-    <value>Sprak</value>
-  </data>
-  <data name="och" xml:space="preserve">
-    <value>och</value>
+    <value>Språk</value>
   </data>
 </root>

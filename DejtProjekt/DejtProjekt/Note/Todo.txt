@@ -1,0 +1,23 @@
+﻿Små:
+Unique Email och username
+Kommentera
+Tabort oanvänd kod 
+Ta bort list all
+Lägg till personnummer
+Ta bort about
+Ta bort contact
+Lägg till en profil sida
+Fixa nav menyn
+Fixa javascriptet så att textfältet töms och läggs in i listan
+
+Om det fins tid:
+Remove post
+Remove friend
+Edit Post
+Kolla på sök tomt
+Bättre error medelande 
+
+Stora:
+Lägg till confirm add friend
+Lägg till notifikation
+Ta bort Edit på alla profiler

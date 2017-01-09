@@ -36,19 +36,26 @@
 
                     @Html.Partial("_LoginPartial")
 
-                    <a href="@Url.Action("Change", "Language", null)">
-                        <img src="~/Content/Images/svenska.png" style="width:25px;height:25px;"/> Svenska
-                    </a>
+                    @*<a href='@Url.Action("Change", "Language")'>
+                        <img src='@Url.Content("~/Content/Images/svenska.png")' style="width:25px;height:25px;" />
+                    </a>*@
 
+                    @*@Html.ActionLink("Svenska", "Change", "Language", new {@class="imageclass"}, null)*@
+                        
+                    @*<img src="~/Content/Images/svenska.png" style="width:25px;height:25px;"/> Svenska*@
                     
 
-                        @*<a href="/Language/Change?LanguageAbbrevation=Sv">
+                    @*<li>@Html.ActionLink("Svenska", "Change", "Language", new { LanguageAbbrevation = "Sv" }, null)</li>
+                    <li>@Html.ActionLink("Engelska", "Change", "Language", new { LanguageAbbrevation = "En" }, null)</li>
+
+
+                        <a href="/Language/Change?LanguageAbbrevation=Sv">
                             <img src="~/Content/Images/svenska.png" alt="Svenska" style="width:25px;height:25px;" />
-                        </a>*@
+                        </a>
 
                         <a href="/Language/Change?LanguageAbbrevation=En">
                             <img src="~/Content/Images/engelska.png" alt="Engelska" style="width:25px;height:25px;" />
-                        </a>
+                        </a>*@
                         }
 </div>
         </div>
