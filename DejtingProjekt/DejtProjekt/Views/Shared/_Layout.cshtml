@@ -22,8 +22,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Hem, "Index", "Home")</li>
-                    <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Om, "About", "Home")</li>
-                    <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Kontakt, "Contact", "Home")</li>
+                    <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Om, "About", "Home")</li>                  
+                    <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Vanner, "showFriendRequest", "Usermodels")</li>
                     <li>@Html.ActionLink(DejtProjekt.Recourses.Country.Sprak, "Index", "Language")</li>
                 </ul>
                 @using (Html.BeginForm("Index", "UserModels", FormMethod.Get))
@@ -66,6 +66,32 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
+    
+    
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "@Url.Action("checkFReq", "Usermodel")",
+                type: "POST",
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+          
+                },
+                success: function (response) {
+                    $("ul li:nth-child(3)").append("color", "red");
+
+                }
+            });
+        });
+        
+
+        </script>
+      
+
 </body>
 </html>
 

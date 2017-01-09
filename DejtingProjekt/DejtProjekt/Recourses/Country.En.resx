@@ -150,4 +150,7 @@
   <data name="medlem" xml:space="preserve">
     <value>member</value>
   </data>
+  <data name="Vanner" xml:space="preserve">
+    <value>Friend Request</value>
+  </data>
 </root>

@@ -117,11 +117,7 @@ namespace DejtProjekt.Controllers
                     users = users.Where(s => s.Username.Contains(search) && s.Hidden == false);
                 }
 
-                else
-                {
-
-                    return new HttpStatusCodeResult(404, "Sorry we did not find anything");
-                }
+             
             }
 
             catch (Exception e)
@@ -317,10 +313,11 @@ namespace DejtProjekt.Controllers
 
         public ViewResult ShowFriends()
         {
+            int id = LoggInController.GetUserId();
 
             var joinQuery = from user in db.userModel
-                            join friend in db.Friend on user.UserID equals friend.Fid
-                            where friend.RequestAccepted == true
+                            join friend in db.Friend on user.UserID equals friend.UserId
+                            where friend.RequestAccepted == true && friend.UserId == id
                             select new { user.FirstName,user.LastName,user.Username, user.UserID};
 
             var users = new List<UserModel>();
@@ -345,32 +342,62 @@ namespace DejtProjekt.Controllers
 
         public ActionResult showFriendRequest()
         {
-            var joinQuery = from user in db.userModel
-                            join friend in db.Friend on user.UserID equals friend.Fid
-                            where friend.RequestAccepted == false
-                            select new { user.FirstName, user.LastName, user.Username, user.UserID, friend.Fid }; 
 
-            return View(joinQuery);
+            int id = LoggInController.GetUserId();
+            var joinQuery = from user in db.userModel
+                            join friend in db.Friend on user.UserID equals friend.UserId
+                            where friend.RequestAccepted == false && friend.Fid == id
+                            select new { user.FirstName, user.LastName, user.Username, user.UserID};
+
+           
+
+            var users = new List<UserModel>();
+            foreach (var t in joinQuery)
+            {
+                users.Add(new UserModel()
+                {
+                    FirstName = t.FirstName,
+                    LastName = t.LastName,
+                    Username = t.Username,
+                    UserID = t.UserID,
+                });
+            }
+
+
+            return View(users);
         }
 
         public ActionResult AcceptFriendRequest(int id)
         {
 
+
+            var a = from f in db.Friend
+                    where f.FriendId == id
+                    select new { f.Fid };
+
+            if (a.Equals(LoggInController.GetUserId()))
+            {
+
+                Friend friend = db.Friend.Find(id);
+                friend.RequestAccepted = true;
+
+                try
+                {
+
+                    db.Entry(friend).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+
             
-            Friend friend = db.Friend.Single(f => f.Fid == id);
-
-            friend.RequestAccepted = true;
-
-            try
-            {
-
-                db.Entry(friend).State = EntityState.Modified;
-                db.SaveChanges();
+            else{
+                return new HttpStatusCodeResult(404, "Done");
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+
 
             return RedirectToAction("showFriendRequest");
 
@@ -379,7 +406,7 @@ namespace DejtProjekt.Controllers
         public ActionResult DeniedFriendRequest(int id)
         {
 
-            Friend friend = db.Friend.Single(f => f.Fid == id);
+            Friend friend = db.Friend.Find(id);
             try
             {
                 db.Friend.Remove(friend);
@@ -452,6 +479,27 @@ namespace DejtProjekt.Controllers
             //return Redirect("~/Home");
             //return new HttpStatusCodeResult(404, "Hejsan");
             //return ViewBag.Message = "Hejsan hoppsan";
+        }
+
+        [HttpPost]
+        public ActionResult checkFReq()
+        {
+
+            int id = LoggInController.GetUserId();
+
+            int Request = (from user in db.userModel
+                           join friend in db.Friend on user.UserID equals friend.UserId
+                           where friend.RequestAccepted == false && friend.Fid == id
+                           select user).Count();
+            
+
+            if (Request > 0)
+            {
+                return Json("Success");
+            }
+
+            return Json("An Error Has occoured");
+
         }
 
         protected override void Dispose(bool disposing)
