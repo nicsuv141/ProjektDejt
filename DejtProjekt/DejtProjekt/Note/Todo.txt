@@ -1,12 +1,12 @@
 ﻿Små:
-Unique Email och username
+//Unique Email och username
 Kommentera
 Tabort oanvänd kod 
 Ta bort list all
 Lägg till personnummer
-Ta bort about
-Ta bort contact
-Lägg till en profil sida
+//Ta bort about
+//Ta bort contact
+//Lägg till en profil sida
 Fixa nav menyn
 Fixa javascriptet så att textfältet töms och läggs in i listan
 

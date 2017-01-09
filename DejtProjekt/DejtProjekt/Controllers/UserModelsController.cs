@@ -179,6 +179,7 @@ namespace DejtProjekt.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserModel userModel)
         {
+            
             try
             {
                 if (ModelState.IsValid)
@@ -347,10 +348,12 @@ namespace DejtProjekt.Controllers
 
         public ViewResult ShowFriends()
         {
+            int id = LoggInController.GetUserId();
 
             var joinQuery = from user in db.userModel
-                            join friend in db.Friend on user.UserID equals friend.Fid
-                            select new { user.FirstName,user.LastName,user.Username, user.UserID};
+                            join friend in db.Friend on user.UserID equals friend.UserId
+                            where friend.RequestAccepted == true && friend.UserId == id
+                            select new { user.FirstName, user.LastName, user.Username, user.UserID };
 
             var users = new List<UserModel>();
             foreach (var t in joinQuery)
@@ -361,7 +364,7 @@ namespace DejtProjekt.Controllers
                     LastName = t.LastName,
                     Username = t.Username,
                     UserID = t.UserID,
-                    });
+                });
             }
             return View(users);
 
@@ -371,6 +374,72 @@ namespace DejtProjekt.Controllers
         {
             return RedirectToAction("Details/" + id, "UserModels");
         }
+
+        public ActionResult showFriendRequest()
+        {
+
+            int id = LoggInController.GetUserId();
+            var joinQuery = from user in db.userModel
+                            join friend in db.Friend on user.UserID equals friend.Fid
+                            where friend.RequestAccepted == false && friend.Fid == id
+
+                            select new { user.FirstName, user.LastName, user.Username, user.UserID };
+            var users = new List<UserModel>();
+            foreach (var t in joinQuery)
+            {
+                users.Add(new UserModel()
+                {
+                    FirstName = t.FirstName,
+                    LastName = t.LastName,
+                    Username = t.Username,
+                    UserID = t.UserID,
+                });
+            }
+
+
+            return View(users);
+        }
+
+
+        public ActionResult AcceptFriendRequest(int id)
+        {
+
+
+            Friend friend = db.Friend.Find(id);
+
+            friend.RequestAccepted = true;
+
+            try
+            {
+
+                db.Entry(friend).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return RedirectToAction("showFriendRequest");
+
+        }
+
+        public ActionResult DeniedFriendRequest(int id)
+        {
+
+            Friend friend = db.Friend.Find(id);
+            try
+            {
+                db.Friend.Remove(friend);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return RedirectToAction("showFriendRequest");
+        }
+
 
         [HttpGet]
         public string AddFriend(int friendId)

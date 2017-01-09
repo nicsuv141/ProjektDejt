@@ -159,4 +159,7 @@
   <data name="Sprak" xml:space="preserve">
     <value>Språk</value>
   </data>
+  <data name="Vanner" xml:space="preserve">
+    <value>Vänförfrågning</value>
+  </data>
 </root>

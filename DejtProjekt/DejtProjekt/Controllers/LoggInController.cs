@@ -15,7 +15,7 @@ namespace DejtProjekt.Controllers
     {
 
 
-
+        private OurDbContext db = new OurDbContext();
 
         public ActionResult Register()
         {
@@ -27,31 +27,43 @@ namespace DejtProjekt.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    if (upload != null && upload.ContentLength > 0)
-                    {
-                        var avatar = new File
-                        {
-                            FileName = System.IO.Path.GetFileName(upload.FileName),
-                            FileType = FileType.Avatar,
-                            ContentType = upload.ContentType
-                        };
-                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                        {
-                            avatar.Content = reader.ReadBytes(upload.ContentLength);
-                        }
-                        account.Files = new List<File> { avatar };
-                    }
-                    using (OurDbContext db = new OurDbContext())
-                    {
-                        db.userModel.Add(account);
-                        db.SaveChanges();
-                    }
-                    ModelState.Clear();
-                    ViewBag.Message = account.FirstName + " " + account.LastName + "Succsess";
+                var userNameToCheck = account.Username;
+                var EmailToCheck = account.Email;
+                var exists = db.userModel.Any(x => x.Username == userNameToCheck || x.Email == userNameToCheck);
 
+                if (!exists)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        if (upload != null && upload.ContentLength > 0)
+                        {
+                            var avatar = new File
+                            {
+                                FileName = System.IO.Path.GetFileName(upload.FileName),
+                                FileType = FileType.Avatar,
+                                ContentType = upload.ContentType
+                            };
+                            using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                            {
+                                avatar.Content = reader.ReadBytes(upload.ContentLength);
+                            }
+                            account.Files = new List<File> { avatar };
+                        }
+                        using (OurDbContext db = new OurDbContext())
+                        {
+                            db.userModel.Add(account);
+                            db.SaveChanges();
+                        }
+                        ModelState.Clear();
+                        ViewBag.Message = account.FirstName + " " + account.LastName + "Succsess";
+
+                    }
                 }
+                else
+                {
+                    Console.WriteLine("Nej du detta gick inte");
+                }
+                
             }
             catch (Exception e)
             {

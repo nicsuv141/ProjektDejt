@@ -185,5 +185,14 @@ namespace DejtProjekt.Recourses {
                 return ResourceManager.GetString("Sprak", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vänförfrågning.
+        /// </summary>
+        public static string Vanner {
+            get {
+                return ResourceManager.GetString("Vanner", resourceCulture);
+            }
+        }
     }
 }
