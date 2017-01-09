@@ -73,6 +73,8 @@ namespace DejtProjekt.Models
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }
 
+        
+
         public virtual ICollection<File> Files { get; set; }
 
         public virtual ICollection<Friend> Friends { get; set; }

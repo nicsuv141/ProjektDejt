@@ -160,7 +160,7 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Om.
+        ///   Looks up a localized string similar to Profil.
         /// </summary>
         public static string Om {
             get {

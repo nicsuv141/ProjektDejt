@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using DejtProjekt.Models;
 using System.Data.Entity.Infrastructure;
 using System;
+using System.Security.Claims;
+
 
 namespace DejtProjekt.Controllers
 {
@@ -34,6 +36,7 @@ namespace DejtProjekt.Controllers
 
         //}
 
+            //Sök funktion som gör det möjligt att söka efter registrerade användare i navigeringsmenyn. 
         [HttpGet]
         public ActionResult Index(string searchString)
         {
@@ -193,22 +196,60 @@ namespace DejtProjekt.Controllers
             return View(userModel);
         }
 
-        // GET: UserModels/Edit/5
+        //public ActionResult EditProfile(UserModel user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+
+        //        Claim sessionName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name);
+        //        string userName = sessionName.Value;
+
+        //        UserModel userModel = db.userModel.FirstOrDefault(u => u.Username.Equals(userName));
+
+
+        //        userModel.NewPassword = user.NewPassword;
+        //        userModel.ConfirmPassword = user.ConfirmPassword;
+        //        userModel.Email = user.Email;
+
+        //        db.Entry(userModel).State = EntityState.Modified;
+        //        db.SaveChanges();
+
+        //        return RedirectToAction("Index");
+
+
+        //    }
+        //    return View(user);
+        //}
+
+         
+        //GET: UserModels/Edit/5
         public ActionResult Edit(int? id)
         {
             UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
+            var c = new LoggInController();
             try
             {
-                if (id == null)
+                var loggedInUser = LoggInController.GetUserId();/*(HttpContext.Current.User.Identity.Name);*/
+            if (id != loggedInUser)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            else
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return View(userModel);
                 }
 
+            //if (id == null)
+            //    {
+            //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //    }
 
-                if (userModel == null)
-                {
-                    return HttpNotFound();
-                }
+
+                //if (userModel == null)
+                //{
+                //    return HttpNotFound();
+                //}
             }
             catch (Exception e)
             {
@@ -399,5 +440,7 @@ namespace DejtProjekt.Controllers
             base.Dispose(disposing);
         }
     }
+
+    
 }
 

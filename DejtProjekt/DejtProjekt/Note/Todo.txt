@@ -20,4 +20,4 @@ Bättre error medelande
 Stora:
 Lägg till confirm add friend
 Lägg till notifikation
-Ta bort Edit på alla profiler
+//Ta bort Edit på alla profiler
