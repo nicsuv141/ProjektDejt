@@ -196,18 +196,29 @@ namespace DejtProjekt.Controllers
         // GET: UserModels/Edit/5
         public ActionResult Edit(int? id)
         {
+
             UserModel userModel = db.userModel.Include(s => s.Files).SingleOrDefault(s => s.UserID == id);
             try
             {
-                if (id == null)
+                var loggedInUser = LoggInController.GetUserId();/*(HttpContext.Current.User.Identity.Name);*/
+                if (id != loggedInUser)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                }                
+               else if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
 
-                if (userModel == null)
+               else if (userModel == null)
                 {
                     return HttpNotFound();
+                }
+
+            
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
                 }
             }
             catch (Exception e)
@@ -307,8 +318,6 @@ namespace DejtProjekt.Controllers
         public ViewResult ShowFriends()
         {
 
-
-
             var joinQuery = from user in db.userModel
                             join friend in db.Friend on user.UserID equals friend.Fid
                             where friend.RequestAccepted == true
@@ -332,6 +341,33 @@ namespace DejtProjekt.Controllers
         public ActionResult showFriend(int id)
         {
             return RedirectToAction("Details/" + id, "UserModels");
+        }
+
+        public ActionResult showFriendRequest()
+        {
+            var joinQuery = from user in db.userModel
+                            join friend in db.Friend on user.UserID equals friend.Fid
+                            where friend.RequestAccepted == false
+                            select new { user.FirstName, user.LastName, user.Username, user.UserID, friend.Fid }; 
+
+            return View(joinQuery);
+        }
+
+        public ActionResult AcceptFriendRequest(int Fid)
+        {
+
+            var joinQuery =
+
+
+            return RedirectToAction("showFriendRequest");
+
+        }
+
+        public ActionResult DeniedFriendRequest(int Fid)
+        {
+
+            var joinQuery =
+            return RedirectToAction("showFriendRequest");
         }
 
         [HttpGet]

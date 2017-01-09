@@ -242,6 +242,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IPostRepository.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MyAuthorizeAttribute.cs" />
     <Compile Include="Models\OurDbContext.cs" />
     <Compile Include="Models\OurDbInitializer.cs" />
     <Compile Include="Models\Post.cs" />
@@ -340,6 +341,7 @@
     <Content Include="Views\Language\Index.cshtml" />
     <Content Include="Views\UserModels\SelfFriend.cshtml" />
     <Content Include="Views\Shared\Error404.cshtml" />
+    <Content Include="Views\UserModels\showFriendRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
