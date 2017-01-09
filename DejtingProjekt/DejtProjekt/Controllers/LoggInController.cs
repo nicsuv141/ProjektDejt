@@ -14,6 +14,7 @@ namespace DejtProjekt.Controllers
     public class LoggInController : Controller
     {
 
+        private OurDbContext db = new OurDbContext();
 
 
 
@@ -27,31 +28,61 @@ namespace DejtProjekt.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+
+                var userNameToCheck = account.Username;
+                var EmailToCheck = account.Email;
+
+               
+                var EmailExists = db.userModel.Any(x => x.Email == userNameToCheck);
+                var userNameExists = db.userModel.Any(x => x.Username == userNameToCheck);
+
+                if (!EmailExists && !userNameExists)
                 {
-                    if (upload != null && upload.ContentLength > 0)
+
+                    if (ModelState.IsValid)
                     {
-                        var avatar = new File
+
+
+                        if (upload != null && upload.ContentLength > 0)
                         {
-                            FileName = System.IO.Path.GetFileName(upload.FileName),
-                            FileType = FileType.Avatar,
-                            ContentType = upload.ContentType
-                        };
-                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                        {
-                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                            var avatar = new File
+                            {
+                                FileName = System.IO.Path.GetFileName(upload.FileName),
+                                FileType = FileType.Avatar,
+                                ContentType = upload.ContentType
+                            };
+                            using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                            {
+                                avatar.Content = reader.ReadBytes(upload.ContentLength);
+                            }
+                            account.Files = new List<File> { avatar };
                         }
-                        account.Files = new List<File> { avatar };
+                        using (OurDbContext db = new OurDbContext())
+                        {
+                            db.userModel.Add(account);
+                            db.SaveChanges();
+                        }
+                        ModelState.Clear();
+
+
                     }
-                    using (OurDbContext db = new OurDbContext())
-                    {
-                        db.userModel.Add(account);
-                        db.SaveChanges();
-                    }
-                    ModelState.Clear();
-                   
+                }             
+                else if (EmailExists)
+                {
+                    ModelState.AddModelError("CustomErrorEmail", "There is already a user with that Email.");
+                    return View(account);
+                }
+
+
+                else if (userNameExists)
+                {
+
+                    ModelState.AddModelError("CustomErrorUser", "There is already a user with that UserName.");
+                    return View(account);
+
 
                 }
+
             }
             catch (Exception e)
             {

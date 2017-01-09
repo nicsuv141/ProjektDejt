@@ -151,7 +151,7 @@ namespace DejtProjekt.Recourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to and.
+        ///   Looks up a localized string similar to och.
         /// </summary>
         public static string och {
             get {
@@ -183,6 +183,15 @@ namespace DejtProjekt.Recourses {
         public static string Sprak {
             get {
                 return ResourceManager.GetString("Sprak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vänförfrågningar.
+        /// </summary>
+        public static string Vanner {
+            get {
+                return ResourceManager.GetString("Vanner", resourceCulture);
             }
         }
     }
