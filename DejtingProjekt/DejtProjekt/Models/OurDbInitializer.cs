@@ -20,10 +20,10 @@ namespace DejtProjekt.Models
                 Email = "Trump@hotmail.com",
                 Phone = "123456789",
                 Country = "USA",
-                Gender = false,
+                Gender = true,
                 Hidden = false,
                 LookingFor = 1,
-                PersonalNumber = "197004051321",
+                SecurityNumber = "197004051321",
                 Friends = new List<Friend>()
 
 
@@ -39,10 +39,10 @@ namespace DejtProjekt.Models
                 Email = "Putin@hotmail.com",
                 Phone = "987654321",
                 Country = "Ryssland",
-                Gender = false,
+                Gender = true,
                 Hidden = false,
                 LookingFor = 3,
-                PersonalNumber = "197004051321",
+                SecurityNumber = "197004051321",
                 Friends = new List<Friend>()
             });
 
@@ -56,10 +56,10 @@ namespace DejtProjekt.Models
                 Email = "Lofven@hotmail.com",
                 Phone = "555555555",
                 Country = "Sverige",
-                Gender = false,
+                Gender = true,
                 Hidden = false,
                 LookingFor = 1,
-                PersonalNumber = "197004051321",
+                SecurityNumber = "197004051321",
                 Friends = new List<Friend>()
             });
 
@@ -76,7 +76,7 @@ namespace DejtProjekt.Models
                 Gender = false,
                 Hidden = false,
                 LookingFor = 2,
-                PersonalNumber = "197004051321",
+                SecurityNumber = "197004051321",
                 Friends = new List<Friend>()
 
             });
@@ -91,17 +91,17 @@ namespace DejtProjekt.Models
                 Email = "Alex@gmail.com",
                 Phone = "1111111111",
                 Country = "Sweden",
-                Gender = false,
+                Gender = true,
                 Hidden = false,
                 LookingFor = 3,
-                PersonalNumber = "199404051321",
+                SecurityNumber = "199404051321",
                 Friends = new List<Friend>()
 
             });
 
             context.Posts.Add(new Post
             {
-                Message = "Boom",
+                Message = "I really like does big nukes of yours",
             AuthorId = 1,
             WallId = 2
             

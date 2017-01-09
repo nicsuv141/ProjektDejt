@@ -1,12 +1,12 @@
 ﻿Små:
-Unique Email och username
+Unique Email och username - Done
 Kommentera
 Tabort oanvänd kod 
 Ta bort list all
 Lägg till personnummer
-Ta bort about
-Ta bort contact
-Lägg till en profil sida
+Ta bort about -done
+Ta bort contact -done
+Lägg till en profil sida -done
 Fixa nav menyn
 Fixa javascriptet så att textfältet töms och läggs in i listan
 
@@ -15,12 +15,12 @@ Om det fins tid:
 Remove post
 Remove friend
 Edit Post
-Kolla på sök tomt
+Kolla på sök tomt -done
 Bättre error medelande Lösenord upercase
 Lägg till reg medelande
 
 
 Stora:
-Lägg till confirm add friend
+Lägg till confirm add friend -Done
 Lägg till notifikation
 Ta bort Edit på alla profiler

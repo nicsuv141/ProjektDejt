@@ -62,14 +62,17 @@ namespace DejtProjekt.Models
         [Display(Name = "Nationalitet:")]
         public string Country { get; set; }
 
+        [Required]
         [Display(Name = "Vad letar du efter?")]
         [UIHint("IsLookingFor")]
         public int LookingFor { get; set; }
 
         //public int? PostId { get; set; }  // Foreign key 
         //public int? FriendId { get; set; } // Foreign entity
-        
-        public string PersonalNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Personnummer?")]
+        public string SecurityNumber { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }
